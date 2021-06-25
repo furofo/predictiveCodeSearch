@@ -33,12 +33,13 @@
                    if(combinedKeys[i][j].substr(0, val.length).toUpperCase() == val.toUpperCase()) { 
                     b = document.createElement("DIV");
                     /*make the matching letters bold:*/
+                    console.log("matching bold" + combinedKeys[i][j].substr(0, val.length) );
                     b.innerHTML = "<strong>" + combinedKeys[i][j].substr(0, val.length) + "</strong>";
                     b.innerHTML += combinedKeys[i][j].substr(val.length);
                     //b.setAttribute("class", "center");
                     //this.parentNode.appendChild(b);
                     b.innerHTML += "<input type='hidden' value='" + combinedKeys[i][j] + "'>";
-                    a.appendChild(b);
+                   a.appendChild(b);
                    }
                 }
             
@@ -66,10 +67,9 @@
 
           .center {
                     margin-top: 50px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    padding-bottom: 20px;
+                    position: relative; 
+                    left: 50%;
+                    transform: translateX(-50%);
                     
                     width: 100%;
                 }
