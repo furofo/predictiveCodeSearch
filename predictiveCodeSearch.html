@@ -28,11 +28,11 @@
             a.setAttribute("class", "center");
             this.parentNode.appendChild(a);
 
-            for (i = 0; i < codeKeys.length; i++) {
-                /*check if the item starts with the same letters as the text field value:*/
-          if (codeKeys[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-                console.log("mathced dictionary key found");
-          }
+            for (let i = 0; i < combinedKeys.length; i++) {
+                for(let j =  0; j < combinedKeys[i].length; j++) {
+                    console.log(combinedKeys[i][j]);
+                }
+            
 
             }
      });
