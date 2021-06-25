@@ -2,10 +2,27 @@
 <html>
 <head>
 <script>
+    //dictionaries to look through will go here
+    let codes = {
+         AL: 'Alert or alert see credit report for details',
+         IE: ' regular codes Device Payment',
+     };
+
+     function autocomplete(inp, dict) { 
+
+        console.log("boiler blate");
+     }
+
+
     function getInputValue() {
+        // variables we use throughout code will go here
         let inputVal = document.getElementById("input").value.toUpperCase();
-        console.log(inputVal);
+        
     }
+
+    window.onload = function() {
+    autocomplete(document.getElementById("input"), codes);
+  }
     </script>
     <style>
             body {
