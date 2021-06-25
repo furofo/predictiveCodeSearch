@@ -21,7 +21,9 @@
             a.setAttribute("class", "center");
             this.parentNode.appendChild(a);
 
-            console.log("did it reach here?");
+            for (i = 0; i < codeKeys.length; i++) {
+                console.log("this should looop through " + codeKeys[i]);
+            }
      });
     }
 
