@@ -1,0 +1,2 @@
+This is read me for first version of predictive code search tool. Goal is to have input that when you type text will look through multiple,
+Array/ dictionaires and show predetive text searching of each. 
