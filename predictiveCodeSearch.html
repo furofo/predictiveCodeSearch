@@ -31,7 +31,14 @@
             for (let i = 0; i < combinedKeys.length; i++) {
                 for(let j =  0; j < combinedKeys[i].length; j++) {
                    if(combinedKeys[i][j].substr(0, val.length).toUpperCase() == val.toUpperCase()) { 
-                       console.log("match found!");
+                    b = document.createElement("DIV");
+                    /*make the matching letters bold:*/
+                    b.innerHTML = "<strong>" + combinedKeys[i][j].substr(0, val.length) + "</strong>";
+                    b.innerHTML += combinedKeys[i][j].substr(val.length);
+                    //b.setAttribute("class", "center");
+                    //this.parentNode.appendChild(b);
+                    b.innerHTML += "<input type='hidden' value='" + combinedKeys[i][j] + "'>";
+                    a.appendChild(b);
                    }
                 }
             
