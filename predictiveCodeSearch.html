@@ -8,12 +8,19 @@
          IE: ' regular codes Device Payment',
      };
 
+    let paymentCodes = {
+         IE: 'Device Payment',
+         CR: 'Credit Card',
+     };
+
      function autocomplete(inp, dict) { 
         inp.addEventListener("input", function(e) {
         //variables we use throughout code will go here
             var a, b, i, val = this.value;
             if (!val) { return false;}
             let codeKeys = Object.keys(codes); // array of keys 
+            let paymentCodeKeys = Object.keys(paymentCodes);
+            let combinedKeys = [codeKeys, paymentCodeKeys]; // array of all the code Keys Sub Arrays
             var currentFocus = -1;
             /*create a DIV element that will contain the items (values):*/
             a = document.createElement("DIV");
