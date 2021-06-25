@@ -9,11 +9,21 @@
      };
 
      function autocomplete(inp, dict) { 
+        inp.addEventListener("input", function(e) {
         //variables we use throughout code will go here
-        let codeKeys = Object.keys(codes);
-        console.log(codeKeys[1]);
-     }
+            var a, b, i, val = this.value;
+            if (!val) { return false;}
+            let codeKeys = Object.keys(codes); // array of keys 
+            var currentFocus = -1;
+            /*create a DIV element that will contain the items (values):*/
+            a = document.createElement("DIV");
+            a.setAttribute("id", this.id + "autocomplete-list");
+            a.setAttribute("class", "center");
+            this.parentNode.appendChild(a);
 
+            console.log("did it reach here?");
+     });
+    }
 
     function getInputValue() {
         // variables we use throughout code will go here
