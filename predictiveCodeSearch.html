@@ -61,15 +61,21 @@
   }
     </script>
     <style>
-            body {
+        body {
                     padding: 0px;
                     margin: 0px;
                 }
 
+        .heading{
+            background-color: black;
+            color: white;
+            margin: 0px;
+            padding: 0px;
+        }
+
           .center {
                    display: flex;
                    justify-content: center;
-                    margin-top: 100px;
                     width: 100%;
                 }
         .divcenter {
@@ -96,6 +102,9 @@
     </style>
     </head>
     <body>
+        <div class = "center heading">
+            <h1>Code Lookup Tool</h1>
+        </div>
         <div class = "center">
             <input type = "text" id = "input" tabindex = "1" placeholder = "put code in here" size = "25">
             <button type = "button" id = "btn" onclick = "getInputValue();">Find Code</button>
