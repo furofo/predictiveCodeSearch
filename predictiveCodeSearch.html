@@ -15,6 +15,15 @@
     
     let combinedDict = [codes, paymentCodes];
 
+    document.onkeydown = function(e) {
+        e = e || window.event;
+        switch(e.which || e.keyCode) {
+            case 13:
+            lookupCode();
+            break;
+        }
+    }
+
     function autocomplete(inp, dict) { 
         inp.addEventListener("input", function(e) {
         //variables we use throughout code will go here
@@ -36,13 +45,19 @@
                     b = document.createElement("DIV");
                     /*make the matching letters bold:*/
                     b.setAttribute("class", "divcenter");
+                    b.setAttribute("id", "sub");
+                    wrapper = document.getElementById("searchbarWrapper");
+                    c = document.createElement("DIV");
+                    c.setAttribute("class", "predictiveText");
+                    
                     console.log("matching bold" + combinedKeys[i][j].substr(0, val.length) );
-                    b.innerHTML = "<strong>" + combinedKeys[i][j].substr(0, val.length) + "</strong>";
-                    b.innerHTML += combinedKeys[i][j].substr(val.length);
+                    c.innerHTML = "<strong>" + combinedKeys[i][j].substr(0, val.length) + "</strong>";
+                    c.innerHTML += combinedKeys[i][j].substr(val.length);
                     //b.setAttribute("class", "center");
                     //this.parentNode.appendChild(b);
-                    b.innerHTML += "<input type='hidden' value='" + combinedKeys[i][j] + "'>";
-                    document.body.appendChild(b);
+                    c.innerHTML += "<input type='hidden' value='" + combinedKeys[i][j] + "'>";
+                    wrapper.appendChild(b);
+                    b.appendChild(c);
                    }
                 }
             
