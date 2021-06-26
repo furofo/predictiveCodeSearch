@@ -50,7 +50,14 @@
             }
      });
     }
+    function  displayGenericCode(key){
+        let htmlToDisplay = document.createElement("DIV");
+        htmlToDisplay.setAttribute("class", "center");
+        htmlToDisplay.innerHTML = "<h3>"+ key + "</h3>";
+        document.body.appendChild(htmlToDisplay);
 
+
+    }
     function lookupCode() {
         // variables we use throughout code will go here
         let inputValue = document.getElementById("input").value.toUpperCase();
@@ -66,6 +73,7 @@
                 nodey.setAttribute("class", "divcenter heading subheading");
                 nodey.innerHTML = heading;
                 document.body.appendChild(nodey);
+                displayGenericCode(inputValue);
 
             }
                 if(combinedDict[i] == paymentCodes) {
