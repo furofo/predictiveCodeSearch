@@ -23,23 +23,24 @@
             let combinedKeys = [codeKeys, paymentCodeKeys]; // array of all the code Keys Sub Arrays
             var currentFocus = -1;
             /*create a DIV element that will contain the items (values):*/
-            a = document.createElement("DIV");
-            a.setAttribute("id", this.id + "autocomplete-list");
-            a.setAttribute("class", "center");
-            this.parentNode.appendChild(a);
+           // a = document.createElement("DIV");
+           // a.setAttribute("id", this.id + "autocomplete-list");
+           // a.setAttribute("class", "center");
+           // this.parentNode.appendChild(a);
 
             for (let i = 0; i < combinedKeys.length; i++) {
                 for(let j =  0; j < combinedKeys[i].length; j++) {
                    if(combinedKeys[i][j].substr(0, val.length).toUpperCase() == val.toUpperCase()) { 
                     b = document.createElement("DIV");
                     /*make the matching letters bold:*/
+                    b.setAttribute("class", "divcenter");
                     console.log("matching bold" + combinedKeys[i][j].substr(0, val.length) );
                     b.innerHTML = "<strong>" + combinedKeys[i][j].substr(0, val.length) + "</strong>";
                     b.innerHTML += combinedKeys[i][j].substr(val.length);
                     //b.setAttribute("class", "center");
                     //this.parentNode.appendChild(b);
                     b.innerHTML += "<input type='hidden' value='" + combinedKeys[i][j] + "'>";
-                   a.appendChild(b);
+                    document.body.appendChild(b);
                    }
                 }
             
@@ -66,23 +67,38 @@
                 }
 
           .center {
-                    margin-top: 50px;
-                    position: relative; 
-                    left: 50%;
-                    transform: translateX(-50%);
-                    
+                   display: flex;
+                   justify-content: center;
+                    margin-top: 100px;
                     width: 100%;
                 }
+        .divcenter {
+            display: flex;
+            justify-content:  center;
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
         
            #input {
                     font-size: 28px;
+                    width: 40%;
                  }
+
+            #btn {
+                width: 10%;
+                color: white;
+                background-color: black;
+            }
+            #btn:hover {
+                background-color: grey;
+            }
     </style>
     </head>
     <body>
         <div class = "center">
             <input type = "text" id = "input" tabindex = "1" placeholder = "put code in here" size = "25">
-            <button type = "button" onclick = "getInputValue();">Find Code</button>
+            <button type = "button" id = "btn" onclick = "getInputValue();">Find Code</button>
         </div>
     </body>
 </head>
