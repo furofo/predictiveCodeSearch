@@ -73,11 +73,14 @@
             padding: 0px;
         }
 
-          .center {
+        .center {
                    display: flex;
                    justify-content: center;
                     width: 100%;
                 }
+        .searchbar {
+            margin-top: 70px;
+        }
         .divcenter {
             display: flex;
             justify-content:  center;
@@ -105,7 +108,7 @@
         <div class = "center heading">
             <h1>Code Lookup Tool</h1>
         </div>
-        <div class = "center">
+        <div class = "center searchbar">
             <input type = "text" id = "input" tabindex = "1" placeholder = "put code in here" size = "25">
             <button type = "button" id = "btn" onclick = "getInputValue();">Find Code</button>
         </div>
