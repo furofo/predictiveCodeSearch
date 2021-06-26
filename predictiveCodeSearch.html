@@ -56,6 +56,13 @@
                     //b.setAttribute("class", "center");
                     //this.parentNode.appendChild(b);
                     c.innerHTML += "<input type='hidden' value='" + combinedKeys[i][j] + "'>";
+                    c.addEventListener("click", function(e) {
+                        inp.value = this.getElementsByTagName("input")[0].value;
+                        console.log(inp.value);
+                        lookupCode(inp.value);
+                        
+
+                    })
                     wrapper.appendChild(b);
                     b.appendChild(c);
                    }
@@ -80,7 +87,7 @@
 
     }
     function lookupCode() {
-        
+        console.log("this was called");
         removeLookupCode();
         // variables we use throughout code will go here
         let inputValue = document.getElementById("input").value.toUpperCase();
