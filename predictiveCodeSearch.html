@@ -12,8 +12,10 @@
          IE: 'Device Payment',
          CR: 'Credit Card',
      };
+    
+    let combinedDict = [codes, paymentCodes];
 
-     function autocomplete(inp, dict) { 
+    function autocomplete(inp, dict) { 
         inp.addEventListener("input", function(e) {
         //variables we use throughout code will go here
             var a, b, i, val = this.value;
@@ -51,7 +53,31 @@
 
     function lookupCode() {
         // variables we use throughout code will go here
-        let inputVal = document.getElementById("input").value.toUpperCase();
+        let inputValue = document.getElementById("input").value.toUpperCase();
+        let heading;
+        let nodey;
+        // go through all call dictonaries and see if input is a key in them display key and meaning if so
+        for(let i = 0; i < combinedDict.length; i++) {
+            
+            if(combinedDict[i].hasOwnProperty(inputValue)) {
+                if(combinedDict[i] == codes) {
+                heading = "<h1> Generic Codes <h1>"
+                nodey = document.createElement("DIV");
+                nodey.setAttribute("class", "divcenter heading subheading");
+                nodey.innerHTML = heading;
+                document.body.appendChild(nodey);
+
+            }
+                if(combinedDict[i] == paymentCodes) {
+                heading = "<h1> Payment Codes <h1>"
+                nodey = document.createElement("DIV");
+                nodey.setAttribute("class", "divcenter heading subheading");
+                nodey.innerHTML = heading;
+                document.body.appendChild(nodey);
+
+                }
+            }  
+        }
        
         
     }
@@ -96,6 +122,10 @@
             margin: 0px;
             padding: 0px;
         }
+        .subheading {
+            font-size: 33px;
+            margin-top: 90px;
+        }
         
            #input {
                     font-size: 28px;
@@ -118,7 +148,7 @@
         </div>
         <div class = "center searchbar">
             <input type = "text" id = "input" tabindex = "1" placeholder = "put code in here" size = "25">
-            <button type = "button" id = "btn" onclick = "looupCode();">Find Code</button>
+            <button type = "button" id = "btn" onclick = "lookupCode();">Find Code</button>
         </div>
         <div id = "searchbarWrapper">
 
