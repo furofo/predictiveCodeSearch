@@ -50,15 +50,23 @@
             }
      });
     }
+    function removeLookupCode() {
+        while(document.getElementById("sub")) { // remove all elments created earlier when button clicked
+            document.getElementById("sub").remove();
+        }
+    }
     function  displayGenericCode(key){
         let htmlToDisplay = document.createElement("DIV");
         htmlToDisplay.setAttribute("class", "center");
+        htmlToDisplay.setAttribute("id", "sub");
         htmlToDisplay.innerHTML = "<h3>"+ key + "</h3>";
         document.body.appendChild(htmlToDisplay);
 
 
     }
     function lookupCode() {
+        
+        removeLookupCode();
         // variables we use throughout code will go here
         let inputValue = document.getElementById("input").value.toUpperCase();
         let heading;
@@ -71,6 +79,7 @@
                 heading = "<h1> Generic Codes <h1>"
                 nodey = document.createElement("DIV");
                 nodey.setAttribute("class", "divcenter heading subheading");
+                nodey.setAttribute("id", "sub");
                 nodey.innerHTML = heading;
                 document.body.appendChild(nodey);
                 displayGenericCode(inputValue);
@@ -80,6 +89,7 @@
                 heading = "<h1> Payment Codes <h1>"
                 nodey = document.createElement("DIV");
                 nodey.setAttribute("class", "divcenter heading subheading");
+                nodey.setAttribute("id", "sub");
                 nodey.innerHTML = heading;
                 document.body.appendChild(nodey);
 
