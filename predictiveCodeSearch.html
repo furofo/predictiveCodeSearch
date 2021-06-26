@@ -24,7 +24,9 @@
         }
     }
 
+
     function autocomplete(inp, dict) { 
+        var currentFocus;
         inp.addEventListener("input", function(e) {
         //variables we use throughout code will go here
             var a, b, i, val = this.value;
@@ -32,11 +34,10 @@
             let codeKeys = Object.keys(codes); // array of keys 
             let paymentCodeKeys = Object.keys(paymentCodes);
             let combinedKeys = [codeKeys, paymentCodeKeys]; // array of all the code Keys Sub Arrays
-            var currentFocus = -1;
+            currentFocus = -1;
             /*create a DIV element that will contain the items (values):*/
            // a = document.createElement("DIV");
-           // a.setAttribute("id", this.id + "autocomplete-list");
-           // a.setAttribute("class", "center");
+            
            // this.parentNode.appendChild(a);
 
             for (let i = 0; i < combinedKeys.length; i++) {
@@ -45,12 +46,15 @@
                     b = document.createElement("DIV");
                     /*make the matching letters bold:*/
                     b.setAttribute("class", "divcenter");
-                    b.setAttribute("id", "sub");
+                    b.setAttribute("id", this.id + "autocomplete-list");
+                    //b.setAttribute("id", "sub");
                     wrapper = document.getElementById("searchbarWrapper");
                     c = document.createElement("DIV");
-                    c.setAttribute("class", "predictiveText");
+                    //c.setAttribute("class", "predictiveText");
+                   // c.setAttribute("id", this.id + "autocomplete-list");
+                    c.setAttribute("class", "center predictiveText");
                     
-                    console.log("matching bold" + combinedKeys[i][j].substr(0, val.length) );
+                    
                     c.innerHTML = "<strong>" + combinedKeys[i][j].substr(0, val.length) + "</strong>";
                     c.innerHTML += combinedKeys[i][j].substr(val.length);
                     //b.setAttribute("class", "center");
@@ -58,7 +62,7 @@
                     c.innerHTML += "<input type='hidden' value='" + combinedKeys[i][j] + "'>";
                     c.addEventListener("click", function(e) {
                         inp.value = this.getElementsByTagName("input")[0].value;
-                        console.log(inp.value);
+                        
                         lookupCode(inp.value);
                         
 
@@ -71,6 +75,60 @@
 
             }
      });
+
+     inp.addEventListener("keydown", function(e) {
+      
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) {
+        
+        x = x.getElementsByTagName("div");
+      
+    
+    };
+      
+      if (e.keyCode == 40) {
+        /*If the arrow DOWN key is pressed,
+        increase the currentFocus variable:*/
+        
+        currentFocus++;
+      
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 38) { //up
+        /*If the arrow UP key is pressed,
+        decrease the currentFocus variable:*/
+        currentFocus--;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        /*If the ENTER key is pressed, prevent the form from being submitted,*/
+        e.preventDefault();
+        if (currentFocus > -1) {
+          /*and simulate a click on the "active" item:*/
+          if (x) x[currentFocus].click();
+        }
+      }
+
+    function removeActive(x) {
+    /*a function to remove the "active" class from all autocomplete items:*/
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+    function addActive(x) {
+    /*a function to classify an item as "active":*/
+    if (!x) return false;
+    /*start by removing the "active" class on all items:*/
+    removeActive(x);
+    console.log("this is current foucs:" + currentFocus);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    /*add class "autocomplete-active":*/
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  });
+
+
     }
     function removeLookupCode() {
         while(document.getElementById("sub")) { // remove all elments created earlier when button clicked
@@ -87,7 +145,7 @@
 
     }
     function lookupCode() {
-        console.log("this was called");
+       
         removeLookupCode();
         // variables we use throughout code will go here
         let inputValue = document.getElementById("input").value.toUpperCase();
@@ -119,9 +177,12 @@
             }  
         }
        
-        
+       
     }
 
+
+
+  
     window.onload = function() {
     autocomplete(document.getElementById("input"), codes);
   }
@@ -155,6 +216,12 @@
         .predictiveText:hover{
             background-color: #e9e9e9;
         }
+        .autocomplete-active {
+         /*when navigating through the items using the arrow keys:*/
+        background-color: DodgerBlue !important;
+         color: #ffffff;
+}
+        
         .divcenter {
             display: flex;
             justify-content:  center;
