@@ -21,6 +21,15 @@
     }
     let combinedDict = [codes, paymentCodes, misCodes];
 
+
+    function copy3GText() {
+        var copyText = document.getElementById("3GText");
+       copyText.select();
+       copyText.setSelectionRange(0, 99999); 
+       document.execCommand("copy");  
+
+    }
+
     document.onkeydown = function(e) {
         e = e || window.event;
         switch(e.which || e.keyCode) {
