@@ -72,6 +72,7 @@
             for (let i = 0; i < combinedKeys.length; i++) {
                 for(let j =  0; j < combinedKeys[i].length; j++) {
                    if(combinedKeys[i][j].substr(0, val.length).toUpperCase() == val.toUpperCase()) { 
+                    
                     b = document.createElement("DIV");
                     /*make the matching letters bold:*/
                     b.setAttribute("class", "divcenter autocomplete-items");
@@ -88,6 +89,21 @@
                     c.innerHTML += combinedKeys[i][j].substr(val.length);
                     //b.setAttribute("class", "center");
                     //this.parentNode.appendChild(b);
+                    if(codes.hasOwnProperty(combinedKeys[i][j])) {
+                        console.log("paymetn code found");
+                        c.innerHTML += "(Generic Code)";
+                    }
+                    if(paymentCodes.hasOwnProperty(combinedKeys[i][j])) {
+                        console.log("paymetn code found");
+                        c.innerHTML += "(Payment Codes)";
+                    }
+
+                    if(misCodes.hasOwnProperty(combinedKeys[i][j])) {
+                        console.log("paymetn code found");
+                        c.innerHTML += "(Game Codes)";
+                    }
+
+        
                     c.innerHTML += "<input type='hidden' value='" + combinedKeys[i][j] + "'>";
                     c.addEventListener("click", function(e) {
                         inp.value = this.getElementsByTagName("input")[0].value;
@@ -98,6 +114,8 @@
                     })
                     wrapper.appendChild(b);
                     b.appendChild(c);
+
+
                    }
                 }
             
