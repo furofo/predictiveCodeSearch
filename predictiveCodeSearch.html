@@ -28,8 +28,28 @@
     function autocomplete(inp, dict) { 
         var currentFocus;
         inp.addEventListener("input", function(e) {
+            function closeAllLists(elmt) {
+                if(!elmt) {
+                    var x = document.getElementsByClassName("autocomplete-items");
+                    console.log("this is x" + x.length);
+                    while(x[0]) {
+                        x[0].parentNode.removeChild(x[0]);
+                    }
+                   
+
+                    return false;
+
+                }
+                var x = document.getElementsByClassName("autocomplete-items");
+                for (var i = 0; i < x.length; i++) {
+                if (elmnt != x[i] && elmnt != inp) {
+                x[i].parentNode.removeChild(x[i]);
+                }
+            }
+            }
         //variables we use throughout code will go here
             var a, b, i, val = this.value;
+            closeAllLists();
             if (!val) { return false;}
             let codeKeys = Object.keys(codes); // array of keys 
             let paymentCodeKeys = Object.keys(paymentCodes);
@@ -45,7 +65,7 @@
                    if(combinedKeys[i][j].substr(0, val.length).toUpperCase() == val.toUpperCase()) { 
                     b = document.createElement("DIV");
                     /*make the matching letters bold:*/
-                    b.setAttribute("class", "divcenter");
+                    b.setAttribute("class", "divcenter autocomplete-items");
                     b.setAttribute("id", this.id + "autocomplete-list");
                     //b.setAttribute("id", "sub");
                     wrapper = document.getElementById("searchbarWrapper");
@@ -126,6 +146,8 @@
     /*add class "autocomplete-active":*/
     x[currentFocus].classList.add("autocomplete-active");
   }
+
+  
   });
 
 
