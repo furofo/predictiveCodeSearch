@@ -30,6 +30,22 @@
 
     }
 
+    function getNationWideText() {
+       var copyText = document.getElementById("nationWideText");
+       copyText.select();
+       copyText.setSelectionRange(0, 99999); 
+       document.execCommand("copy");  
+
+    }
+
+    function breakNumberShare() {
+       var copyText = document.getElementById("breakNumberShare");
+       copyText.select();
+       copyText.setSelectionRange(0, 99999); 
+       document.execCommand("copy");  
+
+    }
+
     document.onkeydown = function(e) {
         e = e || window.event;
         switch(e.which || e.keyCode) {
@@ -316,6 +332,7 @@
                 width: 10%;
                 color: white;
                 background-color: black;
+                font-size: 23px;
             }
             button:hover {
                 background-color: grey;
@@ -327,22 +344,26 @@
                 font-size: 30px;
             }
             .btnWrapper {
-                margin-top: 30px;
-                margin-bottom: 30px;
+                margin-top: 45px;
+                margin-bottom: 45px;
             }
             button {
                 color: white;
                 background-color: black;
-                padding-top: 10px;
-                padding-bottom: 10px;
-                border-radius: 25px;
-                margin-left: 1.2em;
+            
              }
              .hidden {
                 opacity: 0;
                 position: absolute;
                 z-index: -9999;
                 pointer-events: none;
+             }
+             .btn{
+                 font-size: 25px;
+                 padding-top: 10px;
+                padding-bottom: 10px;
+                border-radius: 25px;
+                margin-left: 1.2em;
              }
     </style>
     </head>
@@ -352,7 +373,16 @@
         </div>
         <div class = "center btnWrapper">
             <input  class = "hidden" type="text" value="990456445353535" id="3GText">
-            <button class = "copyButton" type = "button" onclick="copy3GText();"> 3G </button>
+            <button class = "copyButton btn" type = "button" onclick="copy3GText();"> 3G </button>
+
+            <input  class = "hidden" type="text" value="35345787878787" id="4GText">
+            <button class = "copyButton btn" type = "button" onclick="copy4GText();"> 4G </button>
+        
+           <input  class = "hidden" type="text" value="73442" id="nationWideText">
+           <button class = "button btn" class = "copyButton" onclick="getNationWideText();"> Nation Wide </button>
+         
+           <input  class = "hidden btn" type="text" value="8675309999" id="breakNumberShare">
+           <button class = "button btn" class = "copyButton" onclick="breakNumberShare();"> Break Numbershare </button>
 
         </div>
         <div class = "center heading">
