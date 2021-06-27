@@ -13,7 +13,13 @@
          CR: 'Credit Card',
      };
     
-    let combinedDict = [codes, paymentCodes];
+
+    let misCodes = {
+        IE: 'blaahh',
+        EXP: "you gained expireince",
+        LVL: "you leveled up!",
+    }
+    let combinedDict = [codes, paymentCodes, misCodes];
 
     document.onkeydown = function(e) {
         e = e || window.event;
@@ -55,7 +61,8 @@
             if (!val) { return false;}
             let codeKeys = Object.keys(codes); // array of keys 
             let paymentCodeKeys = Object.keys(paymentCodes);
-            let combinedKeys = [codeKeys, paymentCodeKeys]; // array of all the code Keys Sub Arrays
+            let miscKeys = Object.keys(misCodes);
+            let combinedKeys = [codeKeys, paymentCodeKeys, miscKeys]; // array of all the code Keys Sub Arrays
             currentFocus = -1;
             /*create a DIV element that will contain the items (values):*/
            // a = document.createElement("DIV");
@@ -191,6 +198,16 @@
             }
                 if(combinedDict[i] == paymentCodes) {
                 heading = "<h1> Payment Codes <h1>"
+                nodey = document.createElement("DIV");
+                nodey.setAttribute("class", "divcenter heading subheading");
+                nodey.setAttribute("id", "sub");
+                nodey.innerHTML = heading;
+                document.body.appendChild(nodey);
+
+                }
+
+                if(combinedDict[i] == misCodes) {
+                heading = "<h1> Game Codes <h1>"
                 nodey = document.createElement("DIV");
                 nodey.setAttribute("class", "divcenter heading subheading");
                 nodey.setAttribute("id", "sub");
