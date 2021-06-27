@@ -98,7 +98,7 @@
 
      inp.addEventListener("keydown", function(e) {
       
-      var x = document.getElementById(this.id + "autocomplete-list");
+      var x = document.getElementById("searchbarWrapper");
       if (x) {
         
         x = x.getElementsByTagName("div");
@@ -110,14 +110,14 @@
         /*If the arrow DOWN key is pressed,
         increase the currentFocus variable:*/
         
-        currentFocus++;
-      
+        currentFocus+=2;
+        console.log("arrow down pressed focus is " + currentFocus + "x is" + x.length);
         /*and and make the current item more visible:*/
         addActive(x);
       } else if (e.keyCode == 38) { //up
         /*If the arrow UP key is pressed,
         decrease the currentFocus variable:*/
-        currentFocus--;
+        currentFocus-=2;
         /*and and make the current item more visible:*/
         addActive(x);
       } else if (e.keyCode == 13) {
