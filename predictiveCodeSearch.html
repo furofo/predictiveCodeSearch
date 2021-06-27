@@ -27,9 +27,10 @@
 
     function autocomplete(inp, dict) { 
         var currentFocus;
-        inp.addEventListener("input", function(e) {
-            function closeAllLists(elmt) {
-                if(!elmt) {
+
+        function closeAllLists() {
+               // console.log("this is element" + elmt);
+               
                     var x = document.getElementsByClassName("autocomplete-items");
                     console.log("this is x" + x.length);
                     while(x[0]) {
@@ -39,14 +40,15 @@
 
                     return false;
 
-                }
-                var x = document.getElementsByClassName("autocomplete-items");
-                for (var i = 0; i < x.length; i++) {
-                if (elmnt != x[i] && elmnt != inp) {
-                x[i].parentNode.removeChild(x[i]);
-                }
+                
+                
             }
-            }
+
+        document.addEventListener("click", function (e) {
+        closeAllLists();
+            });
+        inp.addEventListener("input", function(e) {
+            
         //variables we use throughout code will go here
             var a, b, i, val = this.value;
             closeAllLists();
@@ -150,7 +152,7 @@
   
   });
 
-
+    
     }
     function removeLookupCode() {
         while(document.getElementById("sub")) { // remove all elments created earlier when button clicked
@@ -268,6 +270,9 @@
             }
             #btn:hover {
                 background-color: grey;
+            }
+            h1 {
+                font-size: 30px;
             }
     </style>
     </head>
