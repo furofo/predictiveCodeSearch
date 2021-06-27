@@ -308,17 +308,43 @@
                 color: white;
                 background-color: black;
             }
+            button:hover {
+                background-color: grey;
+            }
             #btn:hover {
                 background-color: grey;
             }
             h1 {
                 font-size: 30px;
             }
+            .btnWrapper {
+                margin-top: 30px;
+                margin-bottom: 30px;
+            }
+            button {
+                color: white;
+                background-color: black;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                border-radius: 25px;
+                margin-left: 1.2em;
+             }
+             .hidden {
+                opacity: 0;
+                position: absolute;
+                z-index: -9999;
+                pointer-events: none;
+             }
     </style>
     </head>
     <body>
         <div class = "center heading">
             <h1>Copy Buttons</h1>
+        </div>
+        <div class = "center btnWrapper">
+            <input  class = "hidden" type="text" value="990456445353535" id="3GText">
+            <button class = "copyButton" type = "button" onclick="copy3GText();"> 3G </button>
+
         </div>
         <div class = "center heading">
             <h1>Code Lookup Tool</h1>
