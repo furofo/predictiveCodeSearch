@@ -141,7 +141,7 @@
     /*start by removing the "active" class on all items:*/
     removeActive(x);
     console.log("this is current foucs:" + currentFocus);
-    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus > x.length) currentFocus = 1;
     if (currentFocus < 0) currentFocus = (x.length - 1);
     /*add class "autocomplete-active":*/
     x[currentFocus].classList.add("autocomplete-active");
