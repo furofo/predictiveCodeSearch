@@ -32,20 +32,60 @@
     }
     //dictionaries to look through will go here
     let codes = {
-         AL: 'Alert or alert see credit report for details',
-         IE: ' regular codes Device Payment',
+        HEADING: '(Generic Codes)',
+        CODES: {
+                AL: 'Alert or alert see credit report for details',
+                IE: ' regular codes Device Payment',
+                 },
+        DISPLAYCODE: function(key) {
+               // Display Header Element
+               displayHeading("Generic Codes");
+               // actual code styling
+               let htmlToDisplay = document.createElement("DIV");
+               htmlToDisplay.setAttribute("class", "center");
+               htmlToDisplay.setAttribute("id", "sub");
+               htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + codes["CODES"][key] + "</p>"
+        },
+         
      };
 
+     console.log(codes.DISPLAYCODE("john"));
+
     let paymentCodes = {
-         IE: 'Device Payment',
+        HEADING: '(Payment Codes)',
+        CODES: {
+         IE: 'Internet',
          CR: 'Credit Card',
-     };
+         },
+         DISPLAYCODE: function(key) {
+               // Display Header Element
+               displayHeading("Generic Codes");
+               // actual code styling
+               let htmlToDisplay = document.createElement("DIV");
+               htmlToDisplay.setAttribute("class", "center");
+               htmlToDisplay.setAttribute("id", "sub");
+               htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + paymentCodes["CODES"][key] + "</p>"
+        },
+    }
     
 
     let misCodes = {
+        HEADING: '(Misc Codes)',
+        CODES: {
         IE: 'blaahh',
         EXP: "you gained expireince",
         LVL: "you leveled up!",
+        },
+        DISPLAYCODE: function(key) { 
+             // Display Header Element
+               displayHeading("Generic Codes");
+               // actual code styling
+               let htmlToDisplay = document.createElement("DIV");
+               htmlToDisplay.setAttribute("class", "center");
+               htmlToDisplay.setAttribute("id", "sub");
+               htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + misCodes["CODES"][key] + "</p>"
+
+        },
     }
 
      //dictionaries to look through will go here
