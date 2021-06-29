@@ -2,6 +2,14 @@
 <html>
 <head>
 <script>
+    let collectableColor = function(collectable) {
+        if (collectable == 'Collectable') {
+            return "<td style = 'color: #32CD32'>" + collectable +"</td>";
+        }
+        else {
+            return "<td style = 'color: red'>" + collectable +"</td>";
+        }
+    }
     //dictionaries to look through will go here
     let codes = {
          AL: 'Alert or alert see credit report for details',
@@ -19,6 +27,8 @@
         EXP: "you gained expireince",
         LVL: "you leveled up!",
     }
+
+     //dictionaries to look through will go here
     let combinedDict = [codes, paymentCodes, misCodes];
 
 
