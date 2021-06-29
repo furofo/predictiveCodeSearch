@@ -20,6 +20,16 @@
         nodey.innerHTML = heading;
         document.body.appendChild(nodey);
     }
+
+    function removeSlash(str) {
+        let strWithoutSlash = '';
+        for(let i = 0; i < str.length; i++) {
+            if(str[i] != '/') {
+                strWithoutSlash += str[i];
+            }
+        }
+        return strWithoutSlash;
+    }
     //dictionaries to look through will go here
     let codes = {
          AL: 'Alert or alert see credit report for details',
