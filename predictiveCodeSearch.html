@@ -49,7 +49,6 @@
          
      };
 
-     console.log(codes.DISPLAYCODE("john"));
 
     let paymentCodes = {
         HEADING: '(Payment Codes)',
@@ -59,7 +58,7 @@
          },
          DISPLAYCODE: function(key) {
                // Display Header Element
-               displayHeading("Generic Codes");
+               displayHeading("Payment Codes");
                // actual code styling
                let htmlToDisplay = document.createElement("DIV");
                htmlToDisplay.setAttribute("class", "center");
@@ -78,7 +77,7 @@
         },
         DISPLAYCODE: function(key) { 
              // Display Header Element
-               displayHeading("Generic Codes");
+               displayHeading("Misc Codes");
                // actual code styling
                let htmlToDisplay = document.createElement("DIV");
                htmlToDisplay.setAttribute("class", "center");
@@ -196,18 +195,12 @@
       
       var x = document.getElementById("searchbarWrapper");
       if (x) {
-        
         x = x.getElementsByTagName("div");
-      
-    
-    };
-      
+    }; 
       if (e.keyCode == 40) {
         /*If the arrow DOWN key is pressed,
         increase the currentFocus variable:*/
-        
         currentFocus+=2;
-        console.log("arrow down pressed focus is " + currentFocus + "x is" + x.length);
         /*and and make the current item more visible:*/
         addActive(x);
       } else if (e.keyCode == 38) { //up
@@ -224,7 +217,6 @@
           if (x) x[currentFocus].click();
         }
       }
-
     function removeActive(x) {
     /*a function to remove the "active" class from all autocomplete items:*/
     for (var i = 0; i < x.length; i++) {
@@ -244,26 +236,15 @@
   }
 
   
-  });
-
-    
+  }); 
     }
     function removeLookupCode() {
         while(document.getElementById("sub")) { // remove all elments created earlier when button clicked
             document.getElementById("sub").remove();
         }
     }
-    function  displayGenericCode(key){
-        let htmlToDisplay = document.createElement("DIV");
-        htmlToDisplay.setAttribute("class", "center");
-        htmlToDisplay.setAttribute("id", "sub");
-        htmlToDisplay.innerHTML = "<h3>"+ key + "</h3>";
-        document.body.appendChild(htmlToDisplay);
-
-
-    }
     function lookupCode() {
-       
+        closeAllLists();
         removeLookupCode();
         // variables we use throughout code will go here
         let inputValue = document.getElementById("input").value.toUpperCase();
@@ -272,46 +253,13 @@
         // go through all call dictonaries and see if input is a key in them display key and meaning if so
         for(let i = 0; i < combinedDict.length; i++) {
             
-            if(combinedDict[i].hasOwnProperty(inputValue)) {
-                if(combinedDict[i] == codes) {
-                heading = "<h1> Generic Codes <h1>"
-                nodey = document.createElement("DIV");
-                nodey.setAttribute("class", "divcenter heading subheading");
-                nodey.setAttribute("id", "sub");
-                nodey.innerHTML = heading;
-                document.body.appendChild(nodey);
-                displayGenericCode(inputValue);
-
-            }
-                if(combinedDict[i] == paymentCodes) {
-                heading = "<h1> Payment Codes <h1>"
-                nodey = document.createElement("DIV");
-                nodey.setAttribute("class", "divcenter heading subheading");
-                nodey.setAttribute("id", "sub");
-                nodey.innerHTML = heading;
-                document.body.appendChild(nodey);
-
-                }
-
-                if(combinedDict[i] == misCodes) {
-                heading = "<h1> Game Codes <h1>"
-                nodey = document.createElement("DIV");
-                nodey.setAttribute("class", "divcenter heading subheading");
-                nodey.setAttribute("id", "sub");
-                nodey.innerHTML = heading;
-                document.body.appendChild(nodey);
-
-                }
+            if(combinedDict[i]["CODES"].hasOwnProperty(inputValue)) {
+                combinedDict[i].DISPLAYCODE(inputValue);
             }  
         }
-       
-       
     }
-
-
     //dictionaries to look through will go here
     let combinedDict = [codes, paymentCodes, misCodes];
-  
     window.onload = function() {
     autocomplete(document.getElementById("input"));
   }
