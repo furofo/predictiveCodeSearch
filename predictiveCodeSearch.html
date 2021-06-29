@@ -88,8 +88,7 @@
         },
     }
 
-     //dictionaries to look through will go here
-    let combinedDict = [codes, paymentCodes, misCodes];
+    
 
 
     function copy3GText() {
@@ -126,7 +125,7 @@
     }
 
 
-    function autocomplete(inp, dict) { 
+    function autocomplete(inp) { 
         var currentFocus;
 
         function closeAllLists() {
@@ -335,10 +334,11 @@
     }
 
 
-
+    //dictionaries to look through will go here
+    let combinedDict = [codes, paymentCodes, misCodes];
   
     window.onload = function() {
-    autocomplete(document.getElementById("input"), codes);
+    autocomplete(document.getElementById("input"));
   }
     </script>
     <style>
