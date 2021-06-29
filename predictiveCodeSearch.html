@@ -10,6 +10,16 @@
             return "<td style = 'color: red'>" + collectable +"</td>";
         }
     }
+
+    let displayHeading = function(str) {
+        //define header element
+        heading = "<h1>" + str + "</h1>";
+        nodey = document.createElement("DIV");
+        nodey.setAttribute("class", "divcenter heading subheading");
+        nodey.setAttribute("id", "sub");
+        nodey.innerHTML = heading;
+        document.body.appendChild(nodey);
+    }
     //dictionaries to look through will go here
     let codes = {
          AL: 'Alert or alert see credit report for details',
