@@ -124,26 +124,18 @@
         }
     }
 
-
-    function autocomplete(inp) { 
-        var currentFocus;
-
-        function closeAllLists() {
+    function closeAllLists() {
                // console.log("this is element" + elmt);
-               
                     var x = document.getElementsByClassName("autocomplete-items");
                     console.log("this is x" + x.length);
                     while(x[0]) {
                         x[0].parentNode.removeChild(x[0]);
                     }
-                   
-
-                    return false;
-
-                
-                
+                    return false;  
             }
 
+    function autocomplete(inp) { 
+        var currentFocus;
         document.addEventListener("click", function (e) {
         closeAllLists();
             });
@@ -153,48 +145,31 @@
             var a, b, i, val = this.value;
             closeAllLists();
             if (!val) { return false;}
-            let codeKeys = Object.keys(codes); // array of keys 
-            let paymentCodeKeys = Object.keys(paymentCodes);
-            let miscKeys = Object.keys(misCodes);
-            let combinedKeys = [codeKeys, paymentCodeKeys, miscKeys]; // array of all the code Keys Sub Arrays
+            // array to hold all keys
+            let combinedKeys = []; 
+            for(let i = 0; i < combinedDict.length; i++) {
+                combinedKeys.push(Object.keys(combinedDict[i]["CODES"]));
+            }
             currentFocus = -1;
-            /*create a DIV element that will contain the items (values):*/
-           // a = document.createElement("DIV");
-            
-           // this.parentNode.appendChild(a);
-
             for (let i = 0; i < combinedKeys.length; i++) {
                 for(let j =  0; j < combinedKeys[i].length; j++) {
                    if(combinedKeys[i][j].substr(0, val.length).toUpperCase() == val.toUpperCase()) { 
-                    
+                    let key = combinedKeys[i][j];
                     b = document.createElement("DIV");
                     /*make the matching letters bold:*/
                     b.setAttribute("class", "divcenter autocomplete-items");
                     b.setAttribute("id", this.id + "autocomplete-list");
-                    //b.setAttribute("id", "sub");
                     wrapper = document.getElementById("searchbarWrapper");
                     c = document.createElement("DIV");
-                    //c.setAttribute("class", "predictiveText");
-                   // c.setAttribute("id", this.id + "autocomplete-list");
                     c.setAttribute("class", "center predictiveText");
-                    
-                    
                     c.innerHTML = "<strong>" + combinedKeys[i][j].substr(0, val.length) + "</strong>";
                     c.innerHTML += combinedKeys[i][j].substr(val.length);
                     //b.setAttribute("class", "center");
                     //this.parentNode.appendChild(b);
-                    if(codes.hasOwnProperty(combinedKeys[i][j])) {
-                        console.log("paymetn code found");
-                        c.innerHTML += "(Generic Code)";
-                    }
-                    if(paymentCodes.hasOwnProperty(combinedKeys[i][j])) {
-                        console.log("paymetn code found");
-                        c.innerHTML += "(Payment Codes)";
-                    }
-
-                    if(misCodes.hasOwnProperty(combinedKeys[i][j])) {
-                        console.log("paymetn code found");
-                        c.innerHTML += "(Game Codes)";
+                    for (let k = 0; k < combinedDict.length; k++) {
+                        if(combinedDict[k]['CODES'].hasOwnProperty(key)) {
+                            c.innerHTML += combinedDict[k]["HEADING"];
+                        }
                     }
 
         
