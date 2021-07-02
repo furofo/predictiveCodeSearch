@@ -90,24 +90,24 @@
     
 
 
-    function copy3GText() {
-        var copyText = document.getElementById("3GText");
+    function copyKonamiCode() {
+        var copyText = document.getElementById("konamiText");
        copyText.select();
        copyText.setSelectionRange(0, 99999); 
        document.execCommand("copy");  
 
     }
 
-    function getNationWideText() {
-       var copyText = document.getElementById("nationWideText");
+    function fixItCode() {
+       var copyText = document.getElementById("fixItText");
        copyText.select();
        copyText.setSelectionRange(0, 99999); 
        document.execCommand("copy");  
 
     }
 
-    function breakNumberShare() {
-       var copyText = document.getElementById("breakNumberShare");
+    function breakItCode() {
+       var copyText = document.getElementById("breakItCode");
        copyText.select();
        copyText.setSelectionRange(0, 99999); 
        document.execCommand("copy");  
@@ -365,17 +365,16 @@
             <h1>Copy Buttons</h1>
         </div>
         <div class = "center btnWrapper">
-            <input  class = "hidden" type="text" value="990456445353535" id="3GText">
-            <button class = "copyButton btn" type = "button" onclick="copy3GText();"> 3G </button>
+            <input  class = "hidden" type="text" value="990456445353535" id="konamiText">
+            <button class = "copyButton btn" type = "button" onclick="copyKonamiCode();"> konami </button>
 
-            <input  class = "hidden" type="text" value="35345787878787" id="4GText">
-            <button class = "copyButton btn" type = "button" onclick="copy4GText();"> 4G </button>
-        
-           <input  class = "hidden" type="text" value="73442" id="nationWideText">
-           <button class = "button btn" class = "copyButton" onclick="getNationWideText();"> Nation Wide </button>
          
-           <input  class = "hidden btn" type="text" value="8675309999" id="breakNumberShare">
-           <button class = "button btn" class = "copyButton" onclick="breakNumberShare();"> Break Numbershare </button>
+        
+           <input  class = "hidden" type="text" value="73442" id="fixItText">
+           <button class = "button btn" class = "copyButton" onclick="fixItCode();"> fixItCode </button>
+         
+           <input  class = "hidden btn" type="text" value="8675309999" id="breakItCode">
+           <button class = "button btn" class = "copyButton" onclick="breakItCode();"> Break Numbershare </button>
 
         </div>
         <div class = "center heading">
