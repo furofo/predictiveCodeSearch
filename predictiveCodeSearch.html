@@ -273,7 +273,7 @@ function copyKonamiCode() {
     //used as temp array of objects add display function code once we get codes
      let googleDict = [];
        /* 
-       This is function that loops through returned obj's array from google app   scripts and adds the necessary display code function for custom dictionary list
+       This is function that loops through googleDict and pushes it into master dictionary for use wiht code
        
        */
       let restofCode = function() {
@@ -292,7 +292,11 @@ function copyKonamiCode() {
          googleDict[i]['DISPLAYCODE'] = function(key) {
               displayHeading("GoogleSheetCodes");
               let htmlToDisplay = document.createElement("DIV");
-               htmlToDisplay.setAttribute("class", "center");
+               if(googleDict[i].hasOwnProperty('ISCLICKABLE')) {
+                  htmlToDisplay.setAttribute("class", "center isClickable");
+              }
+              else {htmlToDisplay.setAttribute("class", "center");}
+               
                htmlToDisplay.setAttribute("id", "sub");
                htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + googleDict[i]["CODES"][key] + "</p>"
                document.body.appendChild(htmlToDisplay);
@@ -409,6 +413,10 @@ function copyKonamiCode() {
                 padding-bottom: 10px;
                 border-radius: 25px;
                 margin-left: 1.2em;
+             }
+
+             .isClickable:hover {
+                background-color: red;
              }
     </style>
     </head>
