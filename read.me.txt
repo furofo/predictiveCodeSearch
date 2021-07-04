@@ -14,3 +14,11 @@ let someDict = {
 
 
 }
+
+Current functionality reads from google sheets as well and adds to dictionary using first column as key 2nd column as Value
+and treats each sheet in google sheet as separte dictionary
+Hover effect appears borken on one monitor for predecive text however for some reason may need additoinal testing.
+
+Also wouuld like to implement a url link to code element that can hover over and slightly illumates
+backgroudn if has a link to go to that link may need to update object streuctufre for this.
+
