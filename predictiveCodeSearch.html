@@ -40,17 +40,31 @@
     let codes = {
         HEADING: '(Generic Codes)',
         CODES: {
-                AL: 'Alert or alert see credit report for details',
-                IE: ' regular codes Device Payment',
+            AL: {
+                DEF: 'Alert or alert see credit report for details',
+                ISCLICKABLE: 'GOOGLE.COM',
+                
+
+            },
+
+            IE: {
+              DEF: 'internet Explorer'
+
+            },
+                
                  },
         DISPLAYCODE: function(key) {
                // Display Header Element
                displayHeading("Generic Codes");
                // actual code styling
                let htmlToDisplay = document.createElement("DIV");
-               htmlToDisplay.setAttribute("class", "center");
+               if(codes['CODES'][key].hasOwnProperty('ISCLICKABLE')) {
+                  htmlToDisplay.setAttribute("class", "center isClickable");
+              }
+              else {htmlToDisplay.setAttribute("class", "center");}
+               
                htmlToDisplay.setAttribute("id", "sub");
-               htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + codes["CODES"][key] + "</p>"
+               htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + codes["CODES"][key]['DEF'] + "</p>"
               document.body.appendChild(htmlToDisplay);
         
             },
@@ -292,7 +306,7 @@ function copyKonamiCode() {
          googleDict[i]['DISPLAYCODE'] = function(key) {
               displayHeading("GoogleSheetCodes");
               let htmlToDisplay = document.createElement("DIV");
-               if(googleDict[i].hasOwnProperty('ISCLICKABLE')) {
+               if(googleDict[i]['CODES'].hasOwnProperty('ISCLICKABLE')) {
                   htmlToDisplay.setAttribute("class", "center isClickable");
               }
               else {htmlToDisplay.setAttribute("class", "center");}
@@ -453,3 +467,6 @@ function copyKonamiCode() {
     </body>
 </head>
 </html>
+
+
+

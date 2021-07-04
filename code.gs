@@ -9,18 +9,22 @@ function userClicked(testObjArr) {
 
   for (let i = 0; i < ws.length; i++)   {
       let obj = { 
-          CODES: {}, 
+          CODES: { 
+            
+          }, 
         }
       let rows = ws[i].getDataRange().getValues();
-      if (rows[1][2]) {
-        obj['HEADING'] = " (" + rows[1][2] + ")";
+      if (rows[1][3]) {
+        obj['HEADING'] = " (" + rows[1][3] + ")";
       }
       else {
         obj["HEADING"] = " ("  + ws[i].getName() + ")";
-         Logger.log(obj['HEADING']);
+        
       }
       for (let j = 1; j < rows.length; j++) {
-       
+       if(rows[j][2]) {
+         obj['CODES']['ISCLICKABLE'] = rows[j][2];
+       }
        obj['CODES'][rows[j][0].toUpperCase()] = rows[j][1];
       }
       testObjArr.push(obj);
