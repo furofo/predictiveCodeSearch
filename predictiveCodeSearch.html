@@ -3,6 +3,7 @@
 <head>
 <script>
 
+    //changes color and makes table for collectable codes
     let collectableColor = function(collectable) {
         if (collectable == 'Collectable') {
             return "<td style = 'color: #32CD32'>" + collectable +"</td>";
@@ -12,6 +13,8 @@
         }
     }
 
+
+    // this is function used to display Header Element that Seapartes Dictoinary Elements
     let displayHeading = function(str) {
         //define header element
         heading = "<h1>" + str + "</h1>";
@@ -22,6 +25,8 @@
         document.body.appendChild(nodey);
     }
 
+
+    //removes slashes from input
     function removeSlash(str) {
         let strWithoutSlash = '';
         for(let i = 0; i < str.length; i++) {
@@ -46,11 +51,13 @@
                htmlToDisplay.setAttribute("class", "center");
                htmlToDisplay.setAttribute("id", "sub");
                htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + codes["CODES"][key] + "</p>"
-        },
+              document.body.appendChild(htmlToDisplay);
+        
+            },
          
      };
 
-
+     
     let paymentCodes = {
         HEADING: '(Payment Codes)',
         CODES: {
@@ -406,6 +413,9 @@ function copyKonamiCode() {
         <div class = "center btnWrapper">
             <input  class = "hidden" type="text" value="990456445353535" id="konamiText">
             <button class = "copyButton btn" type = "button" onclick="copyKonamiCode();"> konami </button>
+////
+
+
 
          
         
