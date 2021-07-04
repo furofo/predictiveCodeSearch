@@ -72,6 +72,7 @@
                htmlToDisplay.setAttribute("class", "center");
                htmlToDisplay.setAttribute("id", "sub");
                htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + paymentCodes["CODES"][key] + "</p>"
+               document.body.appendChild(htmlToDisplay);
         },
     }
     
@@ -90,7 +91,8 @@
                let htmlToDisplay = document.createElement("DIV");
                htmlToDisplay.setAttribute("class", "center");
                htmlToDisplay.setAttribute("id", "sub");
-               htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + misCodes["CODES"][key] + "</p>"
+               htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class =     'listMarginLeft'>" + misCodes["CODES"][key] + "</p>"
+               document.body.appendChild(htmlToDisplay);
 
         },
     }
@@ -293,6 +295,7 @@ function copyKonamiCode() {
                htmlToDisplay.setAttribute("class", "center");
                htmlToDisplay.setAttribute("id", "sub");
                htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + googleDict[i]["CODES"][key] + "</p>"
+               document.body.appendChild(htmlToDisplay);
          }
        }
 
@@ -416,7 +419,7 @@ function copyKonamiCode() {
         <div class = "center btnWrapper">
             <input  class = "hidden" type="text" value="990456445353535" id="konamiText">
             <button class = "copyButton btn" type = "button" onclick="copyKonamiCode();"> konami </button>
-////
+
 
 
 
