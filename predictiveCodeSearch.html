@@ -70,22 +70,30 @@
             },
          
      };
-
+    console.log("this is codes");
+    console.log(codes);
      
     let paymentCodes = {
         HEADING: '(Payment Codes)',
-        CODES: {
-         IE: 'Internet',
-         CR: 'Credit Card',
-         },
+        "CODES": {
+        "IE": {
+            "DEF": "Internet"
+        },
+        "CR": {
+            "DEF": "Credit Card"
+        }
+        },
          DISPLAYCODE: function(key) {
                // Display Header Element
                displayHeading("Payment Codes");
                // actual code styling
                let htmlToDisplay = document.createElement("DIV");
-               htmlToDisplay.setAttribute("class", "center");
+               if(paymentCodes['CODES'][key].hasOwnProperty('ISCLICKABLE')) {
+                  htmlToDisplay.setAttribute("class", "center isClickable");
+              }
+              else {htmlToDisplay.setAttribute("class", "center");}
                htmlToDisplay.setAttribute("id", "sub");
-               htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + paymentCodes["CODES"][key] + "</p>"
+               htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + paymentCodes["CODES"][key]["DEF"] + "</p>"
                document.body.appendChild(htmlToDisplay);
         },
     }
@@ -94,18 +102,28 @@
     let misCodes = {
         HEADING: '(Misc Codes)',
         CODES: {
-        IE: 'blaahh',
-        EXP: "you gained expireince",
-        LVL: "you leveled up!",
+        IE: {
+            "DEF": "blaahh"
         },
+        EXP: {
+            "DEF": "you gained expireince"
+        },
+        LVL: {
+            "DEF": "you leveled up!",
+            "ISCLICKABLE": "www.ebay.com",
+        },
+    },
         DISPLAYCODE: function(key) { 
              // Display Header Element
                displayHeading("Misc Codes");
                // actual code styling
                let htmlToDisplay = document.createElement("DIV");
-               htmlToDisplay.setAttribute("class", "center");
+              if(misCodes['CODES'][key].hasOwnProperty('ISCLICKABLE')) {
+                  htmlToDisplay.setAttribute("class", "center isClickable");
+              }
+              else {htmlToDisplay.setAttribute("class", "center");}
                htmlToDisplay.setAttribute("id", "sub");
-               htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class =     'listMarginLeft'>" + misCodes["CODES"][key] + "</p>"
+               htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class =     'listMarginLeft'>" + misCodes["CODES"][key]["DEF"] + "</p>"
                document.body.appendChild(htmlToDisplay);
 
         },
@@ -467,6 +485,4 @@ function copyKonamiCode() {
     </body>
 </head>
 </html>
-
-
 
