@@ -324,13 +324,19 @@ function copyKonamiCode() {
          googleDict[i]['DISPLAYCODE'] = function(key) {
               displayHeading("GoogleSheetCodes");
               let htmlToDisplay = document.createElement("DIV");
-               if(googleDict[i]['CODES'][key].hasOwnProperty('ISCLICKABLE')) {
+              
+               htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + googleDict[i]["CODES"][key]["DEF"] + "</p>";
+              if(googleDict[i]['CODES'][key].hasOwnProperty('ISCLICKABLE')) {
+                  console.log(googleDict[i]['CODES'][key]["ISCLICKABLE"]);
                   htmlToDisplay.setAttribute("class", "center isClickable");
+                  htmlToDisplay.innerHTML = "<a target = '_blank' class = 'center clickableAElement' href = '" +googleDict[i]['CODES'][key]["ISCLICKABLE"] +"'>" + "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + googleDict[i]["CODES"][key]["DEF"] + "</p>" + "</a>";
               }
-              else {htmlToDisplay.setAttribute("class", "center");}
+              else {
+                htmlToDisplay.setAttribute("class", "center");
+                htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + googleDict[i]["CODES"][key]["DEF"] + "</p>";
+                }
                
                htmlToDisplay.setAttribute("id", "sub");
-               htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + googleDict[i]["CODES"][key]["DEF"] + "</p>"
                document.body.appendChild(htmlToDisplay);
          }
        }
@@ -450,6 +456,14 @@ function copyKonamiCode() {
              .isClickable:hover {
                 background-color: red;
              }
+
+             .clickableAElement{
+               width: 100%;
+               color: inherit;
+               text-decoration: none;
+             }
+
+             
     </style>
     </head>
     <body>
