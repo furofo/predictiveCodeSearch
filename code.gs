@@ -22,10 +22,15 @@ function userClicked(testObjArr) {
         
       }
       for (let j = 1; j < rows.length; j++) {
-       if(rows[j][2]) {
-         obj['CODES']['ISCLICKABLE'] = rows[j][2];
+      
+       obj['CODES'][rows[j][0].toUpperCase()] = 
+              {
+                DEF: rows[j][1],
+              
+              }
+        if(rows[j][2]) {
+         obj['CODES'][rows[j][0].toUpperCase()]["ISCLICKABLE"] = rows[j][2];
        }
-       obj['CODES'][rows[j][0].toUpperCase()] = rows[j][1];
       }
       testObjArr.push(obj);
   }

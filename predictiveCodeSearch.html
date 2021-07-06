@@ -324,13 +324,13 @@ function copyKonamiCode() {
          googleDict[i]['DISPLAYCODE'] = function(key) {
               displayHeading("GoogleSheetCodes");
               let htmlToDisplay = document.createElement("DIV");
-               if(googleDict[i]['CODES'].hasOwnProperty('ISCLICKABLE')) {
+               if(googleDict[i]['CODES'][key].hasOwnProperty('ISCLICKABLE')) {
                   htmlToDisplay.setAttribute("class", "center isClickable");
               }
               else {htmlToDisplay.setAttribute("class", "center");}
                
                htmlToDisplay.setAttribute("id", "sub");
-               htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + googleDict[i]["CODES"][key] + "</p>"
+               htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + googleDict[i]["CODES"][key]["DEF"] + "</p>"
                document.body.appendChild(htmlToDisplay);
          }
        }
@@ -485,4 +485,3 @@ function copyKonamiCode() {
     </body>
 </head>
 </html>
-
