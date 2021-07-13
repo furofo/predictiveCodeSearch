@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    </style>
+  <script>
+
+    let locStorage= window.localStorage;
+    
+    function isGoogleSheetLinked() {
+      if(locStorage.getItem("googleSheetLink")) {
+      console.log("google sheet linkded")
+      console.log(locStorage.getItem("googleSheetLink"));
+    }
+
+    else {
+      console.log("google sheet not lkinked")
+    }
+  
+    }
+
+    isGoogleSheetLinked();
+    
+    //console.log("hello");
+    //localStorage.setItem('myCat', 'Tom');
+    //const cat = localStorage.getItem('myCat');
+    //console.log( localStorage.getItem('myCat'));
+  
+    //console.log( localStorage.getItem('myCat'));
+    //localStorage.clear();
+   function validURL(str) {
+  var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+  return !!pattern.test(str);
+}
+
+  
+   function storeLink() {
+     let value;
+     
+
+     //check value if website link and put in local storage if is
+     if(document.querySelector("#websitelink") != null) {
+      value = document.querySelector("#websitelink").value;
+      if(validURL(value)) {
+        console.log("valid link submitted");
+        locStorage.setItem('googleSheetLink', value);
+        console.log(locStorage.getItem('googleSheetLink'));
+      }
+      else {
+        console.log("valid link not sumitted");
+      }
+
+     }
+     else{
+       console.log("input element not foudn sorry");
+     }
+   
+   }
+  
+  </script>
+</head>
+<main>
+<body>
+<input type = "text" id = "websitelink">
+<button onclick = "storeLink()">Submit</button>
+
+</body>
+</main>
+</html>
