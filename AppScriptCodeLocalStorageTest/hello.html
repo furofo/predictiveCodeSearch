@@ -4,17 +4,19 @@
   <style>
     </style>
   <script>
-
+    
     let locStorage= window.localStorage;
     
     function isGoogleSheetLinked() {
       if(locStorage.getItem("googleSheetLink")) {
       console.log("google sheet linkded")
       console.log(locStorage.getItem("googleSheetLink"));
+      return locStorage.getItem("googleSheetLink");
     }
 
     else {
       console.log("google sheet not lkinked")
+      return null;
     }
   
     }
@@ -46,20 +48,28 @@
      //check value if website link and put in local storage if is
      if(document.querySelector("#websitelink") != null) {
       value = document.querySelector("#websitelink").value;
-      if(validURL(value)) {
         console.log("valid link submitted");
         locStorage.setItem('googleSheetLink', value);
         console.log(locStorage.getItem('googleSheetLink'));
-      }
-      else {
-        console.log("valid link not sumitted");
-      }
+      
+      
 
      }
      else{
        console.log("input element not foudn sorry");
      }
    
+   }
+   window.onload = function() {
+   if(isGoogleSheetLinked()!= null) {
+   let url = isGoogleSheetLinked();
+   function onSuccess(row) {
+     
+     console.log("this ran baby!!")
+     console.log(row);
+   }
+   google.script.run.withSuccessHandler(onSuccess).userClicked(url);
+   }
    }
   
   </script>
