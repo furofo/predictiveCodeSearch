@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+<script>
+    
+    let locStorage= window.localStorage;
+    
+    function isGoogleSheetLinked() {
+      if(locStorage.getItem("googleSheetLink")) {
+      console.log("google sheet linkded")
+      console.log(locStorage.getItem("googleSheetLink"));
+      return locStorage.getItem("googleSheetLink");
+    }
+
+    else {
+      console.log("google sheet not lkinked")
+      return null;
+    }
+  
+    }
+
+    isGoogleSheetLinked();
+    
+    //console.log("hello");
+    //localStorage.setItem('myCat', 'Tom');
+    //const cat = localStorage.getItem('myCat');
+    //console.log( localStorage.getItem('myCat'));
+  
+    //console.log( localStorage.getItem('myCat'));
+    //localStorage.clear();
+   function validURL(str) {
+  var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+  return !!pattern.test(str);
+}
+
+  
+   function storeLink() {
+     let value;
+     
+
+     //check value if website link and put in local storage if is
+     if(document.querySelector("#websitelink") != null) {
+      value = document.querySelector("#websitelink").value;
+        console.log("valid link submitted");
+        locStorage.setItem('googleSheetLink', value);
+        console.log(locStorage.getItem('googleSheetLink'));
+      
+      
+
+     }
+     else{
+       console.log("input element not foudn sorry");
+     }
+   
+   }
+   window.onload = function() {
+   if(isGoogleSheetLinked()!= null) {
+   let url = isGoogleSheetLinked();
+   function onSuccess(row) {
+     
+     console.log("this ran baby!!")
+     console.log(row);
+   }
+   google.script.run.withSuccessHandler(onSuccess).userClicked(url);
+   }
+   }
+  
+  </script>
+</head>
+<main>
+<body>
+ <h1>Page 1</h1>
+  <?var url = getScriptUrl();?><a href='<?=url?>?page=my2'>Link to page2</a>
+<input type = "text" id = "websitelink">
+<button onclick = "storeLink()">Submit</button>
+
+</body>
+</main>
+</html>
