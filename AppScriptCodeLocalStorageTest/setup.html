@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <style>
-    </style>
-  <script>
+  <head>
+    <base target="_top">
+<script>
     
     let locStorage= window.localStorage;
     
@@ -76,6 +75,8 @@
 </head>
 <main>
 <body>
+ <h1>Page 1</h1>
+  <?var url = getScriptUrl();?><a href='<?=url?>?page=hello'>Link to page2</a>
 <input type = "text" id = "websitelink">
 <button onclick = "storeLink()">Submit</button>
 
