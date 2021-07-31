@@ -2,6 +2,10 @@ function getScriptUrl() {
  var url = ScriptApp.getService().getUrl();
  return url;
 }
+// this function is used so can seapare javascript and css and include it in other files without having to reuse
+function include(File) {
+  return HtmlService.createHtmlOutputFromFile(File).getContent();
+};
 
 function doGet(e) {
   Logger.log( Utilities.jsonStringify(e) );
