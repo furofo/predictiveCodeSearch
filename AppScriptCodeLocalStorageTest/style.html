@@ -1,197 +1,265 @@
 <style>
-    body {
-                padding: 0px;
-                margin: 0px;
-            }
-
-    .heading{
-        background-color: black;
-        color: white;
-        margin: 0px;
-        padding: 0px;
-    }
-
-    .center {
-               display: flex;
-               justify-content: center;
-               align-items: center;
-                width: 100%;
-            }
-    .searchbar {
-        margin-top: 70px;
-    }
-
-    .predictiveText {
-        width: 525px;
-        border: 1.5px solid;
-        font-size: 20px;
-    }
-
-    strong {
-        font-size: 22px;
-    }
-    .predictiveText:hover{
-        background-color: lightgrey;
-    }
-    .autocomplete-active {
-     /*when navigating through the items using the arrow keys:*/
-    background-color: DodgerBlue !important;
-     color: #ffffff;
-}
-    
-    .divcenter {
-        display: flex;
-        justify-content:  center;
-        width: 100%;
-        margin: 0px;
-        padding: 0px;
-    }
-    .subheading {
-        font-size: 33px;
-        margin-top: 90px;
-    }
-    
-       #input {
-                font-size: 28px;
-                width: 400px;
-             }
-
-        #btn {
-            width: 120px;
-            color: white;
-            background-color: black;
-            font-size: 20px;
-            padding-top: 5px;
-            padding-bottom: 5px;
-        }
-        button:hover {
-            background-color: grey;
-        }
-        #btn:hover {
-            background-color: grey;
-        }
-        h1 {
-            font-size: 30px;
-        }
-        .btnWrapper {
-            margin-top: 45px;
-            margin-bottom: 45px;
-        }
-        button {
-            color: white;
-            background-color: black;
-        
-         }
-         .hidden {
-            opacity: 0;
-            position: absolute;
-            z-index: -9999;
-            pointer-events: none;
-         }
-         .btn{
-             font-size: 25px;
-             padding-top: 10px;
-            padding-bottom: 10px;
-            border-radius: 25px;
-            margin-left: 1.2em;
-         }
-
-         .isClickable:hover {
-            background-color: red;
-         }
-
-         .clickableAElement{
-           width: 100%;
-           color: inherit;
-           text-decoration: none;
-         }
-
-         .navbar {
-           position:fixed;
-           top: 0;
-           left: 0;
-           background-color: red;
-           margin: 0;
-           padding-top: 15px;
-           padding-bottom: 15px;
-           width: 100%;
-         }
-
-
-        
-         .homePageSelected {
-           color: black;
-
-         }
-
-         .aboutPageSelected {
-           color: black;
-
-         }
-
-         .howToPageSelected {
-           color: black;
-         }
-
-         setupPageSelected {
-           color: black;
-         }
-
-        #navbarHomeLink {
-          margin: 0;
-           margin-left: 20px;
-           font-size: 30px;
-           display:inline;
-         
-        }
-        #navbarFirstLink{
-           margin: 0;
-           margin-left: 20px;
-           font-size: 30px;
-           display:inline;
-         }
-
-         #navbarSecondLink{
-           display:inline;
-           margin: 0;
-           margin-left: 20px;
-           font-size: 30px;
-         }
-
-         #navbarThirdLink{
-           display:inline;
-           margin: 0;
-           margin-left: 20px;
-           font-size: 30px;
-         }
-
-          #navbarFirstLink:hover{
-            color: blue;
-         }
-         #navbarSecondLink:hover{
-            color: blue;
-         }
-          #navbarThirdLink:hover{
-            color: blue;
-         }
-
-         #navbarHomeLink:hover {
-           color: blue;
-
-
-         }
-
-             .aboutList {
-             font-size: 20px;
-             margin: 30px 40px 0px 40px;
-         }
-
-         .aboutList li {
-             margin-bottom: 20px;
-         }
-          
-          .pageSelected {
-            color: black;
+  body {
+              padding: 0px;
+              margin: 0px;
           }
+
+  .heading{
+      background-color: black;
+      color: white;
+      margin: 0px;
+      padding: 0px;
+  }
+
+  .center {
+             display: flex;
+             justify-content: center;
+             align-items: center;
+              width: 100%;
+          }
+  .searchbar {
+      margin-top: 70px;
+  }
+
+  .predictiveText {
+      width: 525px;
+      border: 1.5px solid;
+      font-size: 20px;
+  }
+
+  strong {
+      font-size: 22px;
+  }
+  .predictiveText:hover{
+      background-color: lightgrey;
+  }
+  .autocomplete-active {
+   /*when navigating through the items using the arrow keys:*/
+  background-color: DodgerBlue !important;
+   color: #ffffff;
+}
+  
+  .divcenter {
+      display: flex;
+      justify-content:  center;
+      width: 100%;
+      margin: 0px;
+      padding: 0px;
+  }
+  .subheading {
+      font-size: 33px;
+      margin-top: 90px;
+  }
+  
+     #input {
+              font-size: 28px;
+              width: 400px;
+           }
+
+      #btn {
+          width: 120px;
+          color: white;
+          background-color: black;
+          font-size: 20px;
+          padding-top: 5px;
+          padding-bottom: 5px;
+      }
+      button:hover {
+          background-color: grey;
+      }
+      #btn:hover {
+          background-color: grey;
+      }
+      h1 {
+          font-size: 30px;
+      }
+      .btnWrapper {
+          margin-top: 45px;
+          margin-bottom: 45px;
+      }
+      button {
+          color: white;
+          background-color: black;
+      
+       }
+       .hidden {
+          opacity: 0;
+          position: absolute;
+          z-index: -9999;
+          pointer-events: none;
+       }
+       .btn{
+           font-size: 25px;
+           padding-top: 10px;
+          padding-bottom: 10px;
+          border-radius: 25px;
+          margin-left: 1.2em;
+       }
+
+       .isClickable:hover {
+          background-color: red;
+       }
+
+       .clickableAElement{
+         width: 100%;
+         color: inherit;
+         text-decoration: none;
+       }
+
+       .navbar {
+         position:fixed;
+         z-index: 1;
+         top: 0;
+         left: 0;
+         background-color: red;
+         margin: 0;
+         padding-top: 15px;
+         padding-bottom: 15px;
+         width: 100%;
+       }
+
+
+      
+      
+
+      #navbarHomeLink {
+        margin: 0;
+         margin-left: 20px;
+         font-size: 30px;
+         display:inline;
+       
+      }
+      #navbarFirstLink{
+         margin: 0;
+         margin-left: 20px;
+         font-size: 30px;
+         display:inline;
+       }
+
+       #navbarSecondLink{
+         display:inline;
+         margin: 0;
+         margin-left: 20px;
+         font-size: 30px;
+       }
+
+       #navbarThirdLink{
+         display:inline;
+         margin: 0;
+         margin-left: 20px;
+         font-size: 30px;
+       }
+
+        #navbarFirstLink:hover{
+          color: blue;
+       }
+       #navbarSecondLink:hover{
+          color: blue;
+       }
+        #navbarThirdLink:hover{
+          color: blue;
+       }
+
+       #navbarHomeLink:hover {
+         color: blue;
+
+
+       }
+
+           .aboutList {
+           font-size: 20px;
+           margin: 30px 40px 0px 40px;
+       }
+
+       .aboutList li {
+           margin-bottom: 20px;
+       }
+        
+        .pageSelected {
+          color: black;
+        }
+        
+        #websitelink {
+          margin-top: 50px;
+        }
+
+        .setupGuide {
+            margin-top: 23px;
+            font-size: 25px;
+            width: 70%;
+            margin-bottom: 30px;
+        }
+
+        body {
+            background-color: rgb(220, 214, 214);
+        }
+        .exampleNavbar {
+            margin-top: 30px;
+            z-index: 40;
+            position: relative;
+            width: 60%;
+        }
+
+        .spaceBetween {
+            display: flex;
+            justify-content: space-evenly;
+            width: 70%;
+        }
+        .navButton {
+            padding: 10px 5px 10px 5px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            font-size: 16px;
+            width: 130px;
+
+        }
+
+        .exampleLink {
+        margin: 0;
+        margin-left: 20px;
+        font-size: 30px;
+        display:inline;
+        }
+
+        .setupHeader {
+            width: 70%;
+            margin-bottom: 20px;
+            font-weight: bolder;
+            font-size: 28px;
+        }
+
+        .exampleButton {
+          color: white;
+           background-color: black;
+          font-size: 25px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          border-radius: 25px;
+          margin-left: 1.2em;
+
+        }
+
+        .exampleInputButton {
+          width: 120px;
+          color: white;
+          background-color: black;
+          font-size: 20px;
+          padding-top: 5px;
+          padding-bottom: 5px;
+        }
+
+        .exampleSearchBar {
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+        .exampleGoogleSheetSearchBar {
+            margin-top: 60px;
+        }
+        .googleSheetFormat {
+            margin-bottom: 0px;
+        }
+        .setupGuide li {
+            margin-top: 12px;
+        }
 
 </style>

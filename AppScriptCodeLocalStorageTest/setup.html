@@ -2,7 +2,6 @@
 <html>
   <head>
     <base target="_top">
-      <?!= include ('javascript'); ?>
       <?!= include('style'); ?>
    
 <script>
@@ -66,9 +65,6 @@
    if(isGoogleSheetLinked()!= null) {
    let url = isGoogleSheetLinked();
    function onSuccess(row) {
-     
-     console.log("this ran baby!!")
-     console.log(row);
    }
    google.script.run.withSuccessHandler(onSuccess).userClicked(url);
    }
@@ -78,11 +74,24 @@
 </head>
 <main>
 <body>
- <h1>Page 1</h1>
-  <?var url = getScriptUrl();?><a href='<?=url?>?page=hello'>Link to page2</a>
+  <div class = "center heading">
+            <h3>Copy Buttons</h3>
+        </div>
+  <div class = "heading navbar">
+        <h3 id = "navbarHomeLink">Home</h3>
+        <h3 id = "navbarFirstLink">About</h3>
+        <h3 id = "navbarSecondLink">HowTo</h3>
+        <h3 id = "navbarThirdLink" class = "pageSelected">Setup </h3>
+        </div>
+   <div class = "center heading">
+            <h1>Setup Custom Sheet</h1>
+        </div>
+<div class = "center">
 <input type = "text" id = "websitelink">
 <button onclick = "storeLink()">Submit</button>
+</div>
 
 </body>
 </main>
+</html>
 </html>

@@ -6,6 +6,176 @@
       <?!= include('style'); ?>
   </head>
   <body>
-    <h1> and this is how to page</h1>
+     <div class = "center heading">
+        <h3>Copy Buttons</h3>
+    </div>
+  <div class = "heading navbar">
+    <h3 id = "navbarHomeLink" class = "pageSelected">Home</h3>
+    <h3 id = "navbarFirstLink">About</h3>
+    <h3 id = "navbarSecondLink">HowTo</h3>
+    <h3 id = "navbarThirdLink">Setup </h3>
+    </div>
+  <div class = "center heading">
+        <h1>How To Use Guide / Tutorial</h1>
+    </div>
+    <div class = "center">
+        <p class = "setupGuide">
+            This is a guide on how to use and setup the tool, each section will 
+            be broken down individually and expained starting with the navigation menu.
+             Use Buttons below to go directly to approriate section or scroll down
+        </p>
+       
+    </div>
+    <div class = "center">
+        <div class = "spaceBetween">
+        <button class = "navButton"> Navigation </button>
+        <button class = "navButton"> Home </button>
+        <button class = "navButton"> Setup </button>
+        <button class = "navButton"> Troubleshooting </button>
+        </div>
+        
+    </div>
+    <div class = "center heading">
+        <h1>Navigation Menu</h1>
+    </div>
+    <div class = "center">
+        <div class = "heading navbar exampleNavbar">
+            <h3  class = "exampleLink pageSelected">Home</h3>
+            <h3 class = "exampleLink">About</h3>
+            <h3 class = "exampleLink">HowTo</h3>
+            <h3 class = "exampleLink">Setup </h3>
+            </div>
+            </div>
+    
+    <div class = "center">
+       
+        <p class = "setupGuide">
+            The navigation  Menu sits at top of page and allows 
+            you to go to different web pages of the tool, by clicking them,  
+            the current web page will be highlgihted in black. The navigation 
+            menu should look like image above. Next We will discuss each 
+            page in further detail.
+        </p>
+    </div>
+   
+    <div class = "center heading">
+        <h1>Home Page </h1>
+    </div>
+    <div class = "center">
+        <p class = "setupGuide">
+            The default/ home page has two sections, copy buttons that copy 
+            predifined codes common used in a dept. And a code lookup tool that 
+            looks up common codes and displays them in dictionary.
+        </p>
+    </div>
+    <div class = "center">
+        <div class = "setupHeader">
+            Copy Button Selection:
+        </div>
+    </div>
+    <div class = "center btnWrapper">
+        
+        <button class = "exampleButton"> konami </button>
+       
+       <button class = "exampleButton" > fixItCode </button>
+     
+      
+       <button class = "exampleButton"> Break Numbershare </button>
+
+    </div>
+
+    <div class = "center">
+        <p class = "setupGuide">
+            This section (pictured above) consists of buttons like listed above, 
+            when the button is clicked a predfinied code is copied to 
+            the clipboard so the user can paste it else where. 
+        </p>
+    </div>
+   
+    <div class = "center">
+        <div class = "setupHeader">
+            Code Lookup Tool:
+        </div>
+    </div>
+
+    <div class = "center searchbar exampleSearchBar">
+        <input type = "text" id = "input"  placeholder = "put code in here" size = "25" disabled>
+        <button class = "exampleInputButton" disabled>Find Code</button>
+    </div>
+
+    <div class = "center">
+        <p class = "setupGuide">
+            This section (pictured above) is the bulk of the tool.
+             When a user types  a code and hits enter it will search 
+             for that code in predefined dictionaries and either a predfiined
+              google sheet, or one that a user can link to on setup page. 
+        </p>
+        
+       
+    </div>
+      <div class = "center">
+        <p class = "setupGuide">
+            A user can either use search term and hit enter, or click the term that shows up in 
+            the predictive text. The arrow keys can also select predective text / search results that 
+            show up and then hit
+             enter to search for selection. If a match is found, the results will display below with a heading 
+             showing the type of code it is and a further description below. Additionally if 
+             there is a website or ost linked the text will highlight in red indicating you 
+             can click on it to open the link to find more detail about the code in 
+             a new page. 
+        </p>
+      </div> 
+      <div class = "center heading">
+        <h1>Setup Page </h1>
+    </div>
+    <div class = "center searchbar exampleSearchBar exampleGoogleSheetSearchBar">
+        <input type = "text" id = "input"  placeholder = "put google sheet link here" size = "25" disabled>
+        <button class = "exampleInputButton" disabled>Link Sheet</button>
+    </div>
+    <div class = "center">
+        <p class = "setupGuide">
+            In this section you can link your own google sheet to the tool to pull 
+            from as long as it in the right format.  Put in the website url to google sheet you want to link in the input field  
+            and click link sheet button to update it. Sheet should be in the follwing format
+        </p>
+    </div>
+    <div class = "center">
+        <div class = "setupHeader googleSheetFormat">
+            Google Sheet Format:
+        </div>
+    </div>
+    <div class = "center">
+        <div class = "setupGuide">
+           <ul>
+               <li>First row is completly opitional and can be used to name columns</li>
+               <li>First Column are the dictionary keys/ search terms</li>
+               <li>Second Column are the term definitions</li>
+               <li>Third column are ost/ website links this is optional and if present will
+                    highlight the defnition in red when displays indicating is clickable</li>
+                <li>Each worksheet in the linked google sheet is a separte dictionary,
+                     the name of each dictionary is either the sheet name, or a optional 
+                     vaue put in the 4th column/ 1st row, this is the value that displays 
+                     in parenthesis when searching for search term</li>
+           </ul>
+
+        </div>
+    </div>
+    <div class = "center heading">
+        <h1>Troubleshooting</h1>
+    </div>
+    <div class = "center">
+        <p class = "setupGuide">
+            This tool relies in part on predefined dictionaries and in 
+            part on  a predefined or user linked  google sheet in google docs. 
+            If having issues with certain codes not showing up start by refreshing page. 
+        </p>
+    </div>
+    <div class = "center">
+        <p class = "setupGuide">
+            If having further issues and the sheet is a custom one user linked, 
+            check  that sheet is formatted properly and then relink page with url 
+            in setup page then refresh home page once more. 
+        </p>
+    </div>
   </body>
 </html>
