@@ -1,4 +1,5 @@
-<script>
+
+ <script>
   //changes color and makes table for collectable codes
      let collectableColor = function(collectable) {
          if (collectable == 'Collectable') {
@@ -32,121 +33,7 @@
          }
          return strWithoutSlash;
      }
-     //dictionaries to look through will go here
-     let codes = {
-         HEADING: '(Generic Codes)',
-         CODES: {
-             AL: {
-                 DEF: 'Alert or alert see credit report for details',
-                 ISCLICKABLE: 'https://www.ebay.com/',
-                 
- 
-             },
- 
-             IE: {
-               DEF: 'internet Explorer'
- 
-             },
-                 
-                  },
-         DISPLAYCODE: function(key) {
-                // Display Header Element
-                displayHeading("Generic Codes");
-                // actual code styling
-                let htmlToDisplay = document.createElement("DIV");
-                if(codes['CODES'][key].hasOwnProperty('ISCLICKABLE')) {
-                   htmlToDisplay.setAttribute("class", "center isClickable");
-                  htmlToDisplay.innerHTML = "<a target = '_blank' class = 'center clickableAElement' href = '" +codes['CODES'][key]["ISCLICKABLE"] +"'>" + "<h3>" + key + 
- ":</h3><p class = 'listMarginLeft'>" + codes["CODES"][key]["DEF"] + "</p>" + "</a>";  
- 
-               }
-               else {
-                 htmlToDisplay.setAttribute("class", "center");
-                 htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class =      'listMarginLeft'>" + codes["CODES"][key]['DEF'] + "</p>";
-               
-               }
-                
-                htmlToDisplay.setAttribute("id", "sub");
-                
-               document.body.appendChild(htmlToDisplay);
-         
-             },
-          
-      };
-     console.log("this is codes");
-     console.log(codes);
-      
-     let paymentCodes = {
-         HEADING: '(Payment Codes)',
-         "CODES": {
-         "IE": {
-             "DEF": "Internet",
-             "ISCLICKABLE": "https://www.youtube.com/watch?v=k1BneeJTDcU&ab_channel=boburnham",
-         },
-         "CR": {
-             "DEF": "Credit Card"
-         }
-         },
-          DISPLAYCODE: function(key) {
-                // Display Header Element
-                displayHeading("Payment Codes");
-                // actual code styling
-                let htmlToDisplay = document.createElement("DIV");
-                 if(paymentCodes['CODES'][key].hasOwnProperty('ISCLICKABLE')) {
-                   htmlToDisplay.setAttribute("class", "center isClickable");
-                  htmlToDisplay.innerHTML = "<a target = '_blank' class = 'center clickableAElement' href = '" +paymentCodes['CODES'][key]["ISCLICKABLE"] +"'>" + "<h3>" + key + 
- ":</h3><p class = 'listMarginLeft'>" + paymentCodes["CODES"][key]["DEF"] + "</p>" + "</a>";  
- 
-               }
-               else {
-                 htmlToDisplay.setAttribute("class", "center");
-                 htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class =      'listMarginLeft'>" + paymentCodes["CODES"][key]['DEF'] + "</p>";
-               
-               }
-                htmlToDisplay.setAttribute("id", "sub");
-                
-                document.body.appendChild(htmlToDisplay);
-         },
-     }
      
- 
-     let misCodes = {
-         HEADING: '(Misc Codes)',
-         CODES: {
-         IE: {
-             "DEF": "blaahh"
-         },
-         EXP: {
-             "DEF": "you gained expireince"
-         },
-         LVL: {
-             "DEF": "you leveled up!",
-             "ISCLICKABLE": "https://www.ford.com/",
-         },
-     },
-         DISPLAYCODE: function(key) { 
-              // Display Header Element
-                displayHeading("Misc Codes");
-                // actual code styling
-                let htmlToDisplay = document.createElement("DIV");
-                 if(misCodes['CODES'][key].hasOwnProperty('ISCLICKABLE')) {
-                   htmlToDisplay.setAttribute("class", "center isClickable");
-                  htmlToDisplay.innerHTML = "<a target = '_blank' class = 'center clickableAElement' href = '" +misCodes['CODES'][key]["ISCLICKABLE"] +"'>" + "<h3>" + key + 
- ":</h3><p class = 'listMarginLeft'>" + misCodes["CODES"][key]["DEF"] + "</p>" + "</a>";  
- 
-               }
-               else {
-                 htmlToDisplay.setAttribute("class", "center");
-                 htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class =      'listMarginLeft'>" + misCodes["CODES"][key]['DEF'] + "</p>";
-               
-               }
-               
-                htmlToDisplay.setAttribute("id", "sub");
-                
-                document.body.appendChild(htmlToDisplay);
- 
-         },
-     }
  
      
  
@@ -317,7 +204,7 @@
          }
      }
      //dictionaries to look through will go here
-     let combinedDict = [codes, paymentCodes, misCodes];
+     let combinedDict = [];
  
  
      //google script starts here
@@ -346,13 +233,13 @@
                
                 htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + googleDict[i]["CODES"][key]["DEF"] + "</p>";
                if(googleDict[i]['CODES'][key].hasOwnProperty('ISCLICKABLE')) {
-                   console.log(googleDict[i]['CODES'][key]["ISCLICKABLE"]);
                    htmlToDisplay.setAttribute("class", "center isClickable");
                    htmlToDisplay.innerHTML = "<a target = '_blank' class = 'center clickableAElement' href = '" +googleDict[i]['CODES'][key]["ISCLICKABLE"] +"'>" + "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + googleDict[i]["CODES"][key]["DEF"] + "</p>" + "</a>";
                }
                else {
                  htmlToDisplay.setAttribute("class", "center");
                  htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + googleDict[i]["CODES"][key]["DEF"] + "</p>";
+               
                  }
                 
                 htmlToDisplay.setAttribute("id", "sub");
@@ -370,30 +257,26 @@
        let locStorage = window.localStorage;
        let defaultUrl = "https://docs.google.com/spreadsheets/d/1dB2bD7SlqiocqnxrPCxbrF0hyK40Yu-_hVwQ-S6yeEc/edit#gid=515008555";
       if(locStorage.getItem("googleSheetLink")) {
-       
+       console.log("does it at least get to here??");
        google.script.run.withSuccessHandler(onSuccess).userClicked(locStorage.getItem("googleSheetLink"));
-       console.log("google sheet linkded")
-       console.log(locStorage.getItem("googleSheetLink"));
+   
       }
       else {
         google.script.run.withSuccessHandler(onSuccess).userClicked(defaultUrl)
-        console.log("google sheet not lkinked")
+   
       }
      //google.script.run.withSuccessHandler(onSuccess).userClicked(googleDict);
      //google script ends here
  
  
-     //navigation logic goes here
+     //navigation logic for menu items goes here
      let url = '';
      function returnUrl(link) {
-       console.log("well this worked");
         url = link;
- 
      }
      google.script.run.withSuccessHandler(returnUrl).getScriptUrl();
  
      window.onload = function() {
-     
      //define instance variables for buttons here
      let homeButton = document.getElementById("navbarHomeLink");
      let aboutButton = document.getElementById("navbarFirstLink");
