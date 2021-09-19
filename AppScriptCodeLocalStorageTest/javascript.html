@@ -1,5 +1,4 @@
-
- <script>
+<script>
   //changes color and makes table for collectable codes
      let collectableColor = function(collectable) {
          if (collectable == 'Collectable') {
@@ -262,7 +261,7 @@
    
       }
       else {
-        google.script.run.withSuccessHandler(onSuccess).userClicked(defaultUrl)
+       console.log("no sheet linked");
    
       }
      //google.script.run.withSuccessHandler(onSuccess).userClicked(googleDict);
@@ -276,8 +275,10 @@
      }
      google.script.run.withSuccessHandler(returnUrl).getScriptUrl();
  
-     window.onload = function() {
+     //window.onload = function() {
+     let setupNavigationBar = function() {
      //define instance variables for buttons here
+     console.log("setUpNavigationBarFunctionRan");
      let homeButton = document.getElementById("navbarHomeLink");
      let aboutButton = document.getElementById("navbarFirstLink");
      let howToButton = document.getElementById("navbarSecondLink");
@@ -311,6 +312,9 @@
         fullUrl = url + params;
         window.open(fullUrl, "_blank");
      }
+     }
+     let setupAutoComplete = function() {
+       console.log("setupAutoCompleteFunction ran");
      autocomplete(document.getElementById("input"));
    }
  </script>

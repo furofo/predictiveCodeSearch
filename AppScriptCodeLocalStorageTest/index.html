@@ -5,7 +5,9 @@
   <?!= include('style'); ?>
    <script>
      window.onload = function() {if (!locStorage.getItem("googleSheetLink")) {
-       console.log("did this work im not sureee");
+       setupNavigationBar();
+       setupAutoComplete();
+       console.log("did rest of this work tell me!!!!");
         b = document.createElement("DIV");
                     /*make the matching letters bold:*/
                     b.setAttribute("class", "divcenter autocomplete-items");
