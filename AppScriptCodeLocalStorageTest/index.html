@@ -10,8 +10,9 @@
        console.log("did rest of this work tell me!!!!");
         b = document.createElement("DIV");
                     /*make the matching letters bold:*/
-                    b.setAttribute("class", "divcenter autocomplete-items");
-                    b.setAttribute("id", this.id + "autocomplete-list");
+                    b.setAttribute("class", "divcenter noSheetLinked");
+                    
+                    b.innerHTML = "<p>No Google sheet linked! Go to Setup page and put in google sheet url for tool to work properly.</p>"
                     wrapper = document.getElementById("searchbarWrapper");
                     wrapper.appendChild(b);
 
