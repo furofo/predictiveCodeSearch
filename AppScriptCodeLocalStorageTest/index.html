@@ -4,19 +4,34 @@
   <?!= include ('javascript'); ?>
   <?!= include('style'); ?>
    <script>
-     window.onload = function() {if (!locStorage.getItem("googleSheetLink")) {
+     let link;
+      let goToSetup = function() {
+          let fullUrl;
+          let params = "?page=setup"
+          fullUrl = url + params;
+          window.open(fullUrl);
+       }
+     window.onload = function() {
        setupNavigationBar();
+       if (!locStorage.getItem("googleSheetLink")) {
+       
        setupAutoComplete();
        console.log("did rest of this work tell me!!!!");
         b = document.createElement("DIV");
                     /*make the matching letters bold:*/
                     b.setAttribute("class", "divcenter noSheetLinked");
                     
-                    b.innerHTML = "<p>No Google sheet linked! Go to Setup page and put in google sheet url for tool to work properly.</p>"
+                    b.innerHTML = "<p>No Google sheet linked! Go to <a id = 'setupLink'>Setup</a> page and put in google sheet url for tool to work properly.</p>"
                     wrapper = document.getElementById("searchbarWrapper");
                     wrapper.appendChild(b);
 
+      link = document.getElementById('setupLink');
      }
+      if(link) {
+         link.onclick = goToSetup;
+      }
+     
+     
 
      }
      
@@ -57,5 +72,5 @@
 
         </div>
     </body>
-</head>
+
 </html>
