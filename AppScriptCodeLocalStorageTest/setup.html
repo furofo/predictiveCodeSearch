@@ -2,8 +2,9 @@
 <html>
   <head>
     <base target="_top">
+    <?!= include ('javascript'); ?>
       <?!= include('style'); ?>
-      <?!= include ('javascript'); ?>
+      
 <script>
     
     let localStorage= window.localStorage;
@@ -22,15 +23,8 @@
   
     }
 
-    isGoogleSheetLinked();
+   
     
-    //console.log("hello");
-    //localStorage.setItem('myCat', 'Tom');
-    //const cat = localStorage.getItem('myCat');
-    //console.log( localStorage.getItem('myCat'));
-  
-    //console.log( localStorage.getItem('myCat'));
-    //localStorage.clear();
    function validURL(str) {
   var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
@@ -41,26 +35,62 @@
   return !!pattern.test(str);
 }
 
-  
+   let removeSetupMessages = function(){
+     let x = document.getElementsByClassName("sheetLinked");
+     while(x[0]) {
+                        x[0].parentNode.removeChild(x[0]);
+                    }
+                    return false; 
+   }
+   
    function storeLink() {
+     removeSetupMessages();
      let value;
-     
-
      //check value if website link and put in local storage if is
-     if(document.querySelector("#setupInput").value != null) {
+     if(document.querySelector("#setupInput").value != '') {
       value = document.querySelector("#setupInput").value;
-        console.log("valid link submitted");
-        localStorage.setItem('googleSheetLink', value);
-        console.log(localStorage.getItem('googleSheetLink'));
-      
-      
+      if(value){
+         let  b = document.createElement("DIV");
+                    /*make the matching letters bold:*/
+                    b.setAttribute("class", "divcenter sheetLinked");
+                    
+                    b.innerHTML = "<p class = 'setupParagraph'>Google Sheet Linked!</p>";
 
+
+         let c = document.createElement("DIV");
+                   c.setAttribute("class", "divcenter sheetLinked blackFont");
+                   c.innerHTML = "<p class = 'setupParagraph'>Current google URL linked is: </p>";
+        
+         let d = document.createElement("Div");
+                   d.setAttribute("class", "divcenter sheetLinked blueFont");
+                   d.innerHTML = "<p class = 'setupParagraph'> " + value + "</p>";
+
+
+
+                    wrapper = document.getElementsByTagName('main');
+                    wrapper[0].appendChild(b);
+                    wrapper[0].appendChild(c);
+                    wrapper[0].appendChild(d);
+       }
+      localStorage.setItem('googleSheetLink', value);
      }
      else{
-       console.log("input element not foudn sorry");
+       localStorage.clear();
+       let b = document.createElement("DIV");
+       b.setAttribute("class", "divcenter sheetLinked redFont");
+       b.innerHTML = "<p class = 'setupParagraph'>Nothing was submitted, please put</p>";
+
+       let c = document.createElement("DIV");
+       c.setAttribute("class", "divcenter sheetLinked redFont");
+       c.innerHTML = "<p class = 'setupParagraph'>a valid url and click link sheet again!</p>";
+
+       wrapper = document.getElementsByTagName('main');
+       wrapper[0].appendChild(b);
+       wrapper[0].appendChild(c);
      }
    
    }
+   /*
    window.onload = function() {
    if(isGoogleSheetLinked()!= null) {
    let url = isGoogleSheetLinked();
@@ -68,6 +98,43 @@
    }
    google.script.run.withSuccessHandler(onSuccess).userClicked(url);
    }
+   }
+   */
+
+   window.onload = function() {
+       setupNavigationBar();
+       let link =  isGoogleSheetLinked();
+       if(link){
+         let b = document.createElement("DIV");
+                    /*make the matching letters bold:*/
+                    b.setAttribute("class", "divcenter sheetLinked");
+                    
+                    b.innerHTML = "<p class = 'setupParagraph'>Google Sheet Linked!</p>";
+
+
+         let c = document.createElement("DIV");
+                   c.setAttribute("class", "divcenter sheetLinked blackFont");
+                   c.innerHTML = "<p class = 'setupParagraph'>Current google URL linked is: </p>";
+        
+         let d = document.createElement("Div");
+                   d.setAttribute("class", "divcenter sheetLinked blueFont");
+                   d.innerHTML = "<p class = 'setupParagraph'> " + link + "</p>";
+
+
+
+                    wrapper = document.getElementsByTagName('main');
+                    wrapper[0].appendChild(b);
+                    wrapper[0].appendChild(c);
+                    wrapper[0].appendChild(d);
+       }
+
+       else {
+          let b = document.createElement("DIV");
+          b.setAttribute("class", "divcenter sheetLinked redFont");
+          b.innerHTML = "<p class = 'setupParagraph'>No Google Sheet Linked</p>";
+          wrapper = document.getElementsByTagName('main');
+          wrapper[0].appendChild(b);
+       }
    }
   
   </script>

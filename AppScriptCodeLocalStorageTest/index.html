@@ -15,24 +15,22 @@
        setupNavigationBar();
        if (!locStorage.getItem("googleSheetLink")) {
        
-       setupAutoComplete();
-       console.log("did rest of this work tell me!!!!");
-        b = document.createElement("DIV");
-                    /*make the matching letters bold:*/
-                    b.setAttribute("class", "divcenter noSheetLinked");
-                    
-                    b.innerHTML = "<p>No Google sheet linked! Go to <a id = 'setupLink'>Setup</a> page and put in google sheet url for tool to work properly.</p>"
-                    wrapper = document.getElementById("searchbarWrapper");
-                    wrapper.appendChild(b);
-
-      link = document.getElementById('setupLink');
+       b = document.createElement("DIV");
+       b.setAttribute("class", "divcenter noSheetLinked");
+       b.innerHTML = "<p>No Google sheet linked! Go to <a id = 'setupLink'>Setup</a> page and put" + 
+       "in google sheet url for tool to work properly.</p>";
+       wrapper = document.getElementById("searchbarWrapper");
+       wrapper.appendChild(b);
+       link = document.getElementById('setupLink');
+       window.scrollBy(0, 200);
      }
+      else {
+          setupAutoComplete();
+      }
+      
       if(link) {
          link.onclick = goToSetup;
       }
-     
-     
-
      }
      
      
