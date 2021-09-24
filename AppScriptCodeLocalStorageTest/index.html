@@ -13,6 +13,9 @@
           window.open(fullUrl);
        }
      window.onload = function() {
+       //console.log(locStorage.getItem('fullURL'));
+       console.log(localStorage.getItem('fullURL'));
+       localStorage.removeItem('fullURL');
        setupNavigationBar();
        if (!locStorage.getItem("googleSheetLink")) {
        

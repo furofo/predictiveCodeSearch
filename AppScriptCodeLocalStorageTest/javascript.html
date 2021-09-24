@@ -310,29 +310,56 @@
      homeButton.onclick = () => {
          let fullUrl;
          let params = "?page=index"
+         if(!localStorage.getItem('fullURL')) {
+
          fullUrl = url + params;
-         window.open(fullUrl, "_blank");
+         localStorage.setItem('fullURL', url);
+         
+         console.log(localStorage.getItem('fullURL'));
+         window.open(fullUrl, '_top');
+         }
+         window.open(localStorage.getItem('fullURL') + params, '_top');
      }
  
      aboutButton.onclick = () => {
          let fullUrl;
          let params = "?page=about"
-         fullUrl = url + params;
-         window.open(fullUrl, "_blank");
+         if(!localStorage.getItem('fullURL')) {
+
+            fullUrl = url + params;
+         localStorage.setItem('fullURL', url);
+         
+         console.log(localStorage.getItem('fullURL'));
+         window.open(fullUrl, '_top');
+         }
+         window.open(localStorage.getItem('fullURL') + params, '_top');
      }
  
      howToButton.onclick = () => {
         let fullUrl;
          let params = "?page=howTo"
-         fullUrl = url + params;
-         window.open(fullUrl, "_blank");
+        if(!localStorage.getItem('fullURL')) {
+
+            fullUrl = url + params;
+         localStorage.setItem('fullURL', url);
+         
+         console.log(localStorage.getItem('fullURL'));
+         window.open(fullUrl, '_top');
+         }
+         window.open(localStorage.getItem('fullURL') + params, '_top');
      }
      setupButton.onclick = () => {
         let fullUrl;
         let params = "?page=setup"
-        fullUrl = url + params;
-        //window.open(fullUrl, "_blank");
-        window.location.replace(fullUrl);
+       if(!localStorage.getItem('fullURL')) {
+
+            fullUrl = url + params;
+         localStorage.setItem('fullURL', url);
+         
+         console.log(localStorage.getItem('fullURL'));
+         window.open(fullUrl, '_top');
+         }
+         window.open(localStorage.getItem('fullURL') + params, '_top');
         
      }
      }
