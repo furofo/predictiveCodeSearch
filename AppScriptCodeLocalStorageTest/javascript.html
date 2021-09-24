@@ -219,6 +219,29 @@
        }
        
      }
+     function onFailure(failureStr) {
+       let linkedURL = locStorage.getItem("googleSheetLink");
+       let b = document.createElement("DIV");
+       b.setAttribute("class", "divcenter noSheetLinked");
+       b.innerHTML = "<p>Google Sheet did not connect</p>";
+       
+
+       let c = document.createElement("DIV");
+       c.setAttribute("class", "divcenter noSheetLinked");
+       c.innerHTML = "<p>Current Linked Sheet URL: " +  "<span style = 'color:blue'>" + linkedURL  + "</span>" + "</p>";
+
+       let d = document.createElement("DIV");
+       d.setAttribute("class", "divcenter noSheetLinked");
+       d.innerHTML = "<p>Refresh Page or Check url is in correct format and go to <a id = 'setupLink'>Setup</a> page to update. </p>";
+
+       wrapper = document.getElementById("searchbarWrapper");
+       wrapper.appendChild(b);
+       wrapper.appendChild(c);
+       wrapper.appendChild(d);
+
+       link = document.getElementById('setupLink');
+       window.scrollBy(0, 400);
+     }
      /*
  
      This function is call back function for google app scripts when succesfully connects. It returns an object with propertyies HEADING and CODES, since google prohibits returnign functions will loop through after returned to add necessary display code function. Code should work with predefined dictionaries regardless if connects to google app scripts or not
@@ -256,9 +279,7 @@
        let locStorage = window.localStorage;
        let defaultUrl = "https://docs.google.com/spreadsheets/d/1dB2bD7SlqiocqnxrPCxbrF0hyK40Yu-_hVwQ-S6yeEc/edit#gid=515008555";
       if(locStorage.getItem("googleSheetLink")) {
-       console.log("does it at least get to here??");
-       google.script.run.withSuccessHandler(onSuccess).userClicked(locStorage.getItem("googleSheetLink"));
-   
+       google.script.run.withSuccessHandler(onSuccess).withFailureHandler(onFailure).userClicked(locStorage.getItem("googleSheetLink"));
       }
       else {
        console.log("no sheet linked");
@@ -310,7 +331,9 @@
         let fullUrl;
         let params = "?page=setup"
         fullUrl = url + params;
-        window.open(fullUrl, "_blank");
+        //window.open(fullUrl, "_blank");
+        window.location.replace(fullUrl);
+        
      }
      }
      let setupAutoComplete = function() {
