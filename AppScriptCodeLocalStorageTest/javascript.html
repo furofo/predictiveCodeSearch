@@ -216,7 +216,18 @@
          */
         let restofCode = function() {
         for (let i = 0; i < googleDict.length; i++) {
-          combinedDict.push(googleDict[i]);
+          if(googleDict[i]['HEADING'] == 'ButtonSetup') {
+            let konamiButton = document.getElementById("konamiButton");
+            console.log(konamiButton);
+            let konamiText = document.getElementById("konamiText");
+            konamiButton.innerText= googleDict[i]['KONAMI']['TEXT'];
+            konamiText.value = googleDict[i]['KONAMI']['VALUE'];
+        
+          }
+          else {
+             combinedDict.push(googleDict[i]);
+          }
+          
         }
         
       }
@@ -263,7 +274,12 @@
         function onSuccess(cloneObj) { 
          googleDict = cloneObj; 
          for (let i = 0; i < googleDict.length; i++) {
+            if(googleDict[i]['HEADING'] == "ButtonSetup") {
+               console.log('Button Setup Found!!');
+             }
+           else {
            googleDict[i]['DISPLAYCODE'] = function(key) {
+            
                 displayHeading("GoogleSheetCodes");
                 let htmlToDisplay = document.createElement("DIV");
                 
@@ -281,6 +297,12 @@
                  htmlToDisplay.setAttribute("id", "sub");
                  document.body.appendChild(htmlToDisplay);
            }
+ 
+ 
+ 
+           }
+ 
+ 
          }
   
          /* 
