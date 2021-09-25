@@ -6,11 +6,18 @@
   <?!= include ('javascript'); ?>
    <script>
      let link;
-      let goToSetup = function() {
-          let fullUrl;
-          let params = "?page=setup"
-          fullUrl = url + params;
-          window.open(fullUrl);
+     let goToSetup = function() {
+     let fullUrl;
+     let params = "?page=setup"
+       if(!localStorage.getItem('fullURL')) {
+       localStorage.setItem('fullURL', url);
+       fullUrl = url + params;
+         
+         
+         console.log(localStorage.getItem('fullURL'));
+         window.open(fullUrl, '_top');
+         }
+         window.open(localStorage.getItem('fullURL') + params, '_top');
        }
      window.onload = function() {
        //console.log(locStorage.getItem('fullURL'));
@@ -33,6 +40,7 @@
       }
       
       if(link) {
+         console.log("link is presetn");
          link.onclick = goToSetup;
       }
      }

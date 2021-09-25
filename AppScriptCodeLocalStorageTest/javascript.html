@@ -1,370 +1,384 @@
 <script>
-  //changes color and makes table for collectable codes
-     let collectableColor = function(collectable) {
-         if (collectable == 'Collectable') {
-             return "<td style = 'color: #32CD32'>" + collectable +"</td>";
-         }
-         else {
-             return "<td style = 'color: red'>" + collectable +"</td>";
-         }
-     }
- 
- 
-     // this is function used to display Header Element that Seapartes Dictoinary Elements
-     let displayHeading = function(str) {
-         //define header element
-         heading = "<h1>" + str + "</h1>";
-         nodey = document.createElement("DIV");
-         nodey.setAttribute("class", "divcenter heading subheading");
-         nodey.setAttribute("id", "sub");
-         nodey.innerHTML = heading;
-         document.body.appendChild(nodey);
-     }
- 
- 
-     //removes slashes from input
-     function removeSlash(str) {
-         let strWithoutSlash = '';
-         for(let i = 0; i < str.length; i++) {
-             if(str[i] != '/') {
-                 strWithoutSlash += str[i];
-             }
-         }
-         return strWithoutSlash;
-     }
-     
- 
-     
- 
- function copyKonamiCode() {
-         var copyText = document.getElementById("konamiText");
-        copyText.select();
-        copyText.setSelectionRange(0, 99999); 
-        document.execCommand("copy");  
- 
-     }
- 
-     function fixItCode() {
-        var copyText = document.getElementById("fixItText");
-        copyText.select();
-        copyText.setSelectionRange(0, 99999); 
-        document.execCommand("copy");  
- 
-     }
- 
-     function breakItCode() {
-        var copyText = document.getElementById("breakItCode");
-        copyText.select();
-        copyText.setSelectionRange(0, 99999); 
-        document.execCommand("copy");  
- 
-     }
- 
-     document.onkeydown = function(e) {
-         e = e || window.event;
-         switch(e.which || e.keyCode) {
-             case 13:
-             lookupCode();
-             break;
-         }
-     }
- 
-     function closeAllLists() {
-                     var x = document.getElementsByClassName("autocomplete-items");
-                     while(x[0]) {
-                         x[0].parentNode.removeChild(x[0]);
+  // let link; // global link variable
+   //changes color and makes table for collectable codes
+      let collectableColor = function(collectable) {
+          if (collectable == 'Collectable') {
+              return "<td style = 'color: #32CD32'>" + collectable +"</td>";
+          }
+          else {
+              return "<td style = 'color: red'>" + collectable +"</td>";
+          }
+      }
+  
+  
+      // this is function used to display Header Element that Seapartes Dictoinary Elements
+      let displayHeading = function(str) {
+          //define header element
+          heading = "<h1>" + str + "</h1>";
+          nodey = document.createElement("DIV");
+          nodey.setAttribute("class", "divcenter heading subheading");
+          nodey.setAttribute("id", "sub");
+          nodey.innerHTML = heading;
+          document.body.appendChild(nodey);
+      }
+  
+  
+      //removes slashes from input
+      function removeSlash(str) {
+          let strWithoutSlash = '';
+          for(let i = 0; i < str.length; i++) {
+              if(str[i] != '/') {
+                  strWithoutSlash += str[i];
+              }
+          }
+          return strWithoutSlash;
+      }
+      
+  
+      
+  
+  function copyKonamiCode() {
+          var copyText = document.getElementById("konamiText");
+         copyText.select();
+         copyText.setSelectionRange(0, 99999); 
+         document.execCommand("copy");  
+  
+      }
+  
+      function fixItCode() {
+         var copyText = document.getElementById("fixItText");
+         copyText.select();
+         copyText.setSelectionRange(0, 99999); 
+         document.execCommand("copy");  
+  
+      }
+  
+      function breakItCode() {
+         var copyText = document.getElementById("breakItCode");
+         copyText.select();
+         copyText.setSelectionRange(0, 99999); 
+         document.execCommand("copy");  
+  
+      }
+  
+      document.onkeydown = function(e) {
+          e = e || window.event;
+          switch(e.which || e.keyCode) {
+              case 13:
+              lookupCode();
+              break;
+          }
+      }
+  
+      function closeAllLists() {
+                      var x = document.getElementsByClassName("autocomplete-items");
+                      while(x[0]) {
+                          x[0].parentNode.removeChild(x[0]);
+                      }
+                      return false;  
+              }
+  
+      function autocomplete(inp) { 
+          var currentFocus;
+          document.addEventListener("click", function (e) {
+          closeAllLists();
+              });
+          inp.addEventListener("input", function(e) {
+              
+          //variables we use throughout code will go here
+              var a, b, i, val = this.value;
+              closeAllLists();
+              if (!val) { return false;}
+              // array to hold all keys
+              let combinedKeys = []; 
+              for(let i = 0; i < combinedDict.length; i++) {
+                  combinedKeys.push(Object.keys(combinedDict[i]["CODES"]));
+              }
+              currentFocus = -1;
+              for (let i = 0; i < combinedKeys.length; i++) {
+                  for(let j =  0; j < combinedKeys[i].length; j++) {
+                     if(combinedKeys[i][j].substr(0, val.length).toUpperCase() == val.toUpperCase()) { 
+                      let key = combinedKeys[i][j];
+                      b = document.createElement("DIV");
+                      /*make the matching letters bold:*/
+                      b.setAttribute("class", "divcenter autocomplete-items");
+                      b.setAttribute("id", this.id + "autocomplete-list");
+                      wrapper = document.getElementById("searchbarWrapper");
+                      c = document.createElement("DIV");
+                      c.setAttribute("class", "center predictiveText");
+                      c.innerHTML = "<strong>" + combinedKeys[i][j].substr(0, val.length) + "</strong>";
+                      c.innerHTML += combinedKeys[i][j].substr(val.length);
+                      //b.setAttribute("class", "center");
+                      //this.parentNode.appendChild(b);
+                      for (let k = 0; k < combinedDict.length; k++) {
+                          if(combinedDict[k]['CODES'].hasOwnProperty(key)) {
+                              c.innerHTML += combinedDict[k]["HEADING"];
+                          }
+                      }
+  
+          
+                      c.innerHTML += "<input type='hidden' value='" + combinedKeys[i][j] + "'>";
+                      c.addEventListener("click", function(e) {
+                          inp.value = this.getElementsByTagName("input")[0].value;
+                          
+                          lookupCode(inp.value);
+                          
+  
+                      })
+                      wrapper.appendChild(b);
+                      b.appendChild(c);
+  
+  
                      }
-                     return false;  
-             }
- 
-     function autocomplete(inp) { 
-         var currentFocus;
-         document.addEventListener("click", function (e) {
-         closeAllLists();
-             });
-         inp.addEventListener("input", function(e) {
-             
-         //variables we use throughout code will go here
-             var a, b, i, val = this.value;
-             closeAllLists();
-             if (!val) { return false;}
-             // array to hold all keys
-             let combinedKeys = []; 
-             for(let i = 0; i < combinedDict.length; i++) {
-                 combinedKeys.push(Object.keys(combinedDict[i]["CODES"]));
-             }
-             currentFocus = -1;
-             for (let i = 0; i < combinedKeys.length; i++) {
-                 for(let j =  0; j < combinedKeys[i].length; j++) {
-                    if(combinedKeys[i][j].substr(0, val.length).toUpperCase() == val.toUpperCase()) { 
-                     let key = combinedKeys[i][j];
-                     b = document.createElement("DIV");
-                     /*make the matching letters bold:*/
-                     b.setAttribute("class", "divcenter autocomplete-items");
-                     b.setAttribute("id", this.id + "autocomplete-list");
-                     wrapper = document.getElementById("searchbarWrapper");
-                     c = document.createElement("DIV");
-                     c.setAttribute("class", "center predictiveText");
-                     c.innerHTML = "<strong>" + combinedKeys[i][j].substr(0, val.length) + "</strong>";
-                     c.innerHTML += combinedKeys[i][j].substr(val.length);
-                     //b.setAttribute("class", "center");
-                     //this.parentNode.appendChild(b);
-                     for (let k = 0; k < combinedDict.length; k++) {
-                         if(combinedDict[k]['CODES'].hasOwnProperty(key)) {
-                             c.innerHTML += combinedDict[k]["HEADING"];
-                         }
-                     }
- 
-         
-                     c.innerHTML += "<input type='hidden' value='" + combinedKeys[i][j] + "'>";
-                     c.addEventListener("click", function(e) {
-                         inp.value = this.getElementsByTagName("input")[0].value;
-                         
-                         lookupCode(inp.value);
-                         
- 
-                     })
-                     wrapper.appendChild(b);
-                     b.appendChild(c);
- 
- 
-                    }
-                 }
-             
- 
-             }
-      });
- 
-      inp.addEventListener("keydown", function(e) {
-       
-       var x = document.getElementById("searchbarWrapper");
-       if (x) {
-         x = x.getElementsByTagName("div");
-     }; 
-       if (e.keyCode == 40) {
-         /*If the arrow DOWN key is pressed,
-         increase the currentFocus variable:*/
-         currentFocus+=2;
-         /*and and make the current item more visible:*/
-         addActive(x);
-       } else if (e.keyCode == 38) { //up
-         /*If the arrow UP key is pressed,
-         decrease the currentFocus variable:*/
-         currentFocus-=2;
-         /*and and make the current item more visible:*/
-         addActive(x);
-       } else if (e.keyCode == 13) {
-         /*If the ENTER key is pressed, prevent the form from being submitted,*/
-         e.preventDefault();
-         if (currentFocus > -1) {
-           /*and simulate a click on the "active" item:*/
-           if (x) x[currentFocus].click();
-         }
-       }
-     function removeActive(x) {
-     /*a function to remove the "active" class from all autocomplete items:*/
-     for (var i = 0; i < x.length; i++) {
-       x[i].classList.remove("autocomplete-active");
-     }
-   }
-     function addActive(x) {
-     /*a function to classify an item as "active":*/
-     if (!x) return false;
-     /*start by removing the "active" class on all items:*/
-     removeActive(x);
-     
-     if (currentFocus > x.length) currentFocus = 1;
-     if (currentFocus < 0) currentFocus = (x.length - 1);
-     /*add class "autocomplete-active":*/
-     x[currentFocus].classList.add("autocomplete-active");
-   }
- 
-   
-   }); 
-     }
-     function removeLookupCode() {
-         while(document.getElementById("sub")) { // remove all elments created earlier when button clicked
-             document.getElementById("sub").remove();
-         }
-     }
-     function lookupCode() {
-         closeAllLists();
-         removeLookupCode();
-         // variables we use throughout code will go here
-         let inputValue = document.getElementById("input").value.toUpperCase();
-         let heading;
-         let nodey;
-         // go through all call dictonaries and see if input is a key in them display key and meaning if so
-         for(let i = 0; i < combinedDict.length; i++) {
-             
-             if(combinedDict[i]["CODES"].hasOwnProperty(inputValue)) {
-                 combinedDict[i].DISPLAYCODE(inputValue);
-             }  
-         }
-     }
-     //dictionaries to look through will go here
-     let combinedDict = [];
- 
- 
-     //google script starts here
-     //used as temp array of objects add display function code once we get codes
-      let googleDict = [];
-        /* 
-        This is function that loops through googleDict and pushes it into master dictionary for use wiht code
+                  }
+              
+  
+              }
+       });
+  
+       inp.addEventListener("keydown", function(e) {
         
-        */
-       let restofCode = function() {
-       for (let i = 0; i < googleDict.length; i++) {
-         combinedDict.push(googleDict[i]);
-       }
-       
-     }
-     function onFailure(failureStr) {
-       let linkedURL = locStorage.getItem("googleSheetLink");
-       let b = document.createElement("DIV");
-       b.setAttribute("class", "divcenter noSheetLinked");
-       b.innerHTML = "<p>Google Sheet did not connect</p>";
-       
-
-       let c = document.createElement("DIV");
-       c.setAttribute("class", "divcenter noSheetLinked");
-       c.innerHTML = "<p>Current Linked Sheet URL: " +  "<span style = 'color:blue'>" + linkedURL  + "</span>" + "</p>";
-
-       let d = document.createElement("DIV");
-       d.setAttribute("class", "divcenter noSheetLinked");
-       d.innerHTML = "<p>Refresh Page or Check url is in correct format and go to <a id = 'setupLink'>Setup</a> page to update. </p>";
-
-       wrapper = document.getElementById("searchbarWrapper");
-       wrapper.appendChild(b);
-       wrapper.appendChild(c);
-       wrapper.appendChild(d);
-
-       link = document.getElementById('setupLink');
-       window.scrollBy(0, 400);
-     }
-     /*
- 
-     This function is call back function for google app scripts when succesfully connects. It returns an object with propertyies HEADING and CODES, since google prohibits returnign functions will loop through after returned to add necessary display code function. Code should work with predefined dictionaries regardless if connects to google app scripts or not
-     */
-       function onSuccess(cloneObj) { 
-        googleDict = cloneObj; 
-        for (let i = 0; i < googleDict.length; i++) {
-          googleDict[i]['DISPLAYCODE'] = function(key) {
-               displayHeading("GoogleSheetCodes");
-               let htmlToDisplay = document.createElement("DIV");
-               
-                htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + googleDict[i]["CODES"][key]["DEF"] + "</p>";
-               if(googleDict[i]['CODES'][key].hasOwnProperty('ISCLICKABLE')) {
-                   htmlToDisplay.setAttribute("class", "center isClickable");
-                   htmlToDisplay.innerHTML = "<a target = '_blank' class = 'center clickableAElement' href = '" +googleDict[i]['CODES'][key]["ISCLICKABLE"] +"'>" + "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + googleDict[i]["CODES"][key]["DEF"] + "</p>" + "</a>";
-               }
-               else {
-                 htmlToDisplay.setAttribute("class", "center");
-                 htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + googleDict[i]["CODES"][key]["DEF"] + "</p>";
-               
-                 }
-                
-                htmlToDisplay.setAttribute("id", "sub");
-                document.body.appendChild(htmlToDisplay);
+        var x = document.getElementById("searchbarWrapper");
+        if (x) {
+          x = x.getElementsByTagName("div");
+      }; 
+        if (e.keyCode == 40) {
+          /*If the arrow DOWN key is pressed,
+          increase the currentFocus variable:*/
+          currentFocus+=2;
+          /*and and make the current item more visible:*/
+          addActive(x);
+        } else if (e.keyCode == 38) { //up
+          /*If the arrow UP key is pressed,
+          decrease the currentFocus variable:*/
+          currentFocus-=2;
+          /*and and make the current item more visible:*/
+          addActive(x);
+        } else if (e.keyCode == 13) {
+          /*If the ENTER key is pressed, prevent the form from being submitted,*/
+          e.preventDefault();
+          if (currentFocus > -1) {
+            /*and simulate a click on the "active" item:*/
+            if (x) x[currentFocus].click();
           }
         }
- 
-        /* 
-        This is function that loops through returned obj's array from google app   scripts and adds the necessary display code function for custome dictionary list
-        
-        */
-        restofCode();
-        
-       } // this is where if switch can go to see if has local storage vairable or not
-       let locStorage = window.localStorage;
-       let defaultUrl = "https://docs.google.com/spreadsheets/d/1dB2bD7SlqiocqnxrPCxbrF0hyK40Yu-_hVwQ-S6yeEc/edit#gid=515008555";
-      if(locStorage.getItem("googleSheetLink")) {
-       google.script.run.withSuccessHandler(onSuccess).withFailureHandler(onFailure).userClicked(locStorage.getItem("googleSheetLink"));
+      function removeActive(x) {
+      /*a function to remove the "active" class from all autocomplete items:*/
+      for (var i = 0; i < x.length; i++) {
+        x[i].classList.remove("autocomplete-active");
       }
-      else {
-       console.log("no sheet linked");
-   
+    }
+      function addActive(x) {
+      /*a function to classify an item as "active":*/
+      if (!x) return false;
+      /*start by removing the "active" class on all items:*/
+      removeActive(x);
+      
+      if (currentFocus > x.length) currentFocus = 1;
+      if (currentFocus < 0) currentFocus = (x.length - 1);
+      /*add class "autocomplete-active":*/
+      x[currentFocus].classList.add("autocomplete-active");
+    }
+  
+    
+    }); 
       }
-     //google.script.run.withSuccessHandler(onSuccess).userClicked(googleDict);
-     //google script ends here
- 
- 
-     //navigation logic for menu items goes here
-     let url = '';
-     function returnUrl(link) {
-        url = link;
-     }
-     google.script.run.withSuccessHandler(returnUrl).getScriptUrl();
- 
-     //window.onload = function() {
-     let setupNavigationBar = function() {
-     //define instance variables for buttons here
-     console.log("setUpNavigationBarFunctionRan");
-     let homeButton = document.getElementById("navbarHomeLink");
-     let aboutButton = document.getElementById("navbarFirstLink");
-     let howToButton = document.getElementById("navbarSecondLink");
-     let setupButton = document.getElementById("navbarThirdLink");
- 
- 
-     //button click handlers here ()
-     homeButton.onclick = () => {
-         let fullUrl;
-         let params = "?page=index"
-         if(!localStorage.getItem('fullURL')) {
-
-         fullUrl = url + params;
-         localStorage.setItem('fullURL', url);
+      function removeLookupCode() {
+          while(document.getElementById("sub")) { // remove all elments created earlier when button clicked
+              document.getElementById("sub").remove();
+          }
+      }
+      function lookupCode() {
+          closeAllLists();
+          removeLookupCode();
+          // variables we use throughout code will go here
+          let inputValue = document.getElementById("input").value.toUpperCase();
+          let heading;
+          let nodey;
+          // go through all call dictonaries and see if input is a key in them display key and meaning if so
+          for(let i = 0; i < combinedDict.length; i++) {
+              
+              if(combinedDict[i]["CODES"].hasOwnProperty(inputValue)) {
+                  combinedDict[i].DISPLAYCODE(inputValue);
+              }  
+          }
+      }
+      //dictionaries to look through will go here
+      let combinedDict = [];
+  
+  
+      //google script starts here
+      //used as temp array of objects add display function code once we get codes
+       let googleDict = [];
+         /* 
+         This is function that loops through googleDict and pushes it into master dictionary for use wiht code
          
-         console.log(localStorage.getItem('fullURL'));
-         window.open(fullUrl, '_top');
-         }
-         window.open(localStorage.getItem('fullURL') + params, '_top');
-     }
+         */
+        let restofCode = function() {
+        for (let i = 0; i < googleDict.length; i++) {
+          combinedDict.push(googleDict[i]);
+        }
+        
+      }
+      function onFailure(failureStr) {
+        let linkedURL = locStorage.getItem("googleSheetLink");
+        let b = document.createElement("DIV");
+        b.setAttribute("class", "divcenter noSheetLinked");
+        b.innerHTML = "<p>Google Sheet did not connect</p>";
+        
  
-     aboutButton.onclick = () => {
-         let fullUrl;
-         let params = "?page=about"
-         if(!localStorage.getItem('fullURL')) {
-
-            fullUrl = url + params;
-         localStorage.setItem('fullURL', url);
-         
-         console.log(localStorage.getItem('fullURL'));
-         window.open(fullUrl, '_top');
-         }
-         window.open(localStorage.getItem('fullURL') + params, '_top');
-     }
+        let c = document.createElement("DIV");
+        c.setAttribute("class", "divcenter noSheetLinked");
+        c.innerHTML = "<p>Current Linked Sheet URL: " +  "<span style = 'color:blue'>" + linkedURL  + "</span>" + "</p>";
  
-     howToButton.onclick = () => {
-        let fullUrl;
-         let params = "?page=howTo"
+        let d = document.createElement("DIV");
+        d.setAttribute("class", "divcenter noSheetLinked");
+        d.innerHTML = "<p>Refresh Page or Check url is in correct format and go to <a id = 'setupLink'>Setup</a> page to update. </p>";
+ 
+        wrapper = document.getElementById("searchbarWrapper");
+        wrapper.appendChild(b);
+        wrapper.appendChild(c);
+        wrapper.appendChild(d);
+        let linkyFunct = function (){
+            let fullUrl;
+      let params = "?page=setup"
         if(!localStorage.getItem('fullURL')) {
-
-            fullUrl = url + params;
-         localStorage.setItem('fullURL', url);
-         
-         console.log(localStorage.getItem('fullURL'));
-         window.open(fullUrl, '_top');
+        localStorage.setItem('fullURL', url);
+        fullUrl = url + params;
+          
+          
+          console.log(localStorage.getItem('fullURL'));
+          window.open(fullUrl, '_top');
+          }
+          window.open(localStorage.getItem('fullURL') + params, '_top');
+        }
+        let linky = document.getElementById('setupLink');
+        linky.onclick = linkyFunct;
+        window.scrollBy(0, 400);
+      }
+      /*
+  
+      This function is call back function for google app scripts when succesfully connects. It returns an object with propertyies HEADING and CODES, since google prohibits returnign functions will loop through after returned to add necessary display code function. Code should work with predefined dictionaries regardless if connects to google app scripts or not
+      */
+        function onSuccess(cloneObj) { 
+         googleDict = cloneObj; 
+         for (let i = 0; i < googleDict.length; i++) {
+           googleDict[i]['DISPLAYCODE'] = function(key) {
+                displayHeading("GoogleSheetCodes");
+                let htmlToDisplay = document.createElement("DIV");
+                
+                 htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + googleDict[i]["CODES"][key]["DEF"] + "</p>";
+                if(googleDict[i]['CODES'][key].hasOwnProperty('ISCLICKABLE')) {
+                    htmlToDisplay.setAttribute("class", "center isClickable");
+                    htmlToDisplay.innerHTML = "<a target = '_blank' class = 'center clickableAElement' href = '" +googleDict[i]['CODES'][key]["ISCLICKABLE"] +"'>" + "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + googleDict[i]["CODES"][key]["DEF"] + "</p>" + "</a>";
+                }
+                else {
+                  htmlToDisplay.setAttribute("class", "center");
+                  htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + googleDict[i]["CODES"][key]["DEF"] + "</p>";
+                
+                  }
+                 
+                 htmlToDisplay.setAttribute("id", "sub");
+                 document.body.appendChild(htmlToDisplay);
+           }
          }
-         window.open(localStorage.getItem('fullURL') + params, '_top');
-     }
-     setupButton.onclick = () => {
-        let fullUrl;
-        let params = "?page=setup"
-       if(!localStorage.getItem('fullURL')) {
-
-            fullUrl = url + params;
-         localStorage.setItem('fullURL', url);
+  
+         /* 
+         This is function that loops through returned obj's array from google app   scripts and adds the necessary display code function for custome dictionary list
          
-         console.log(localStorage.getItem('fullURL'));
-         window.open(fullUrl, '_top');
-         }
-         window.open(localStorage.getItem('fullURL') + params, '_top');
-        
-     }
-     }
-     let setupAutoComplete = function() {
-       console.log("setupAutoCompleteFunction ran");
-     autocomplete(document.getElementById("input"));
-   }
- </script>
+         */
+         restofCode();
+         
+        } // this is where if switch can go to see if has local storage vairable or not
+        let locStorage = window.localStorage;
+        let defaultUrl = "https://docs.google.com/spreadsheets/d/1dB2bD7SlqiocqnxrPCxbrF0hyK40Yu-_hVwQ-S6yeEc/edit#gid=515008555";
+       if(locStorage.getItem("googleSheetLink")) {
+        google.script.run.withSuccessHandler(onSuccess).withFailureHandler(onFailure).userClicked(locStorage.getItem("googleSheetLink"));
+       }
+       else {
+        console.log("no sheet linked");
+    
+       }
+      //google.script.run.withSuccessHandler(onSuccess).userClicked(googleDict);
+      //google script ends here
+  
+  
+      //navigation logic for menu items goes here
+      let url = '';
+      function returnUrl(link) {
+         url = link;
+      }
+      google.script.run.withSuccessHandler(returnUrl).getScriptUrl();
+  
+      //window.onload = function() {
+      let setupNavigationBar = function() {
+      //define instance variables for buttons here
+      console.log("setUpNavigationBarFunctionRan");
+      let homeButton = document.getElementById("navbarHomeLink");
+      let aboutButton = document.getElementById("navbarFirstLink");
+      let howToButton = document.getElementById("navbarSecondLink");
+      let setupButton = document.getElementById("navbarThirdLink");
+  
+  
+      //button click handlers here ()
+      homeButton.onclick = () => {
+          let fullUrl;
+          let params = "?page=index"
+          if(!localStorage.getItem('fullURL')) {
+ 
+          fullUrl = url + params;
+          localStorage.setItem('fullURL', url);
+          
+          console.log(localStorage.getItem('fullURL'));
+          window.open(fullUrl, '_top');
+          }
+          window.open(localStorage.getItem('fullURL') + params, '_top');
+      }
+  
+      aboutButton.onclick = () => {
+          let fullUrl;
+          let params = "?page=about"
+          if(!localStorage.getItem('fullURL')) {
+ 
+             fullUrl = url + params;
+          localStorage.setItem('fullURL', url);
+          
+          console.log(localStorage.getItem('fullURL'));
+          window.open(fullUrl, '_top');
+          }
+          window.open(localStorage.getItem('fullURL') + params, '_top');
+      }
+  
+      howToButton.onclick = () => {
+         let fullUrl;
+          let params = "?page=howTo"
+         if(!localStorage.getItem('fullURL')) {
+ 
+             fullUrl = url + params;
+          localStorage.setItem('fullURL', url);
+          
+          console.log(localStorage.getItem('fullURL'));
+          window.open(fullUrl, '_top');
+          }
+          window.open(localStorage.getItem('fullURL') + params, '_top');
+      }
+      setupButton.onclick = () => {
+         let fullUrl;
+         let params = "?page=setup"
+        if(!localStorage.getItem('fullURL')) {
+ 
+             fullUrl = url + params;
+          localStorage.setItem('fullURL', url);
+          
+          console.log(localStorage.getItem('fullURL'));
+          window.open(fullUrl, '_top');
+          }
+          window.open(localStorage.getItem('fullURL') + params, '_top');
+         
+      }
+      }
+      let setupAutoComplete = function() {
+        console.log("setupAutoCompleteFunction ran");
+      autocomplete(document.getElementById("input"));
+    }
+  </script>
