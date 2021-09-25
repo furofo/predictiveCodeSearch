@@ -217,11 +217,24 @@
         let restofCode = function() {
         for (let i = 0; i < googleDict.length; i++) {
           if(googleDict[i]['HEADING'] == 'ButtonSetup') {
+            //variables for buttons
             let konamiButton = document.getElementById("konamiButton");
-            console.log(konamiButton);
             let konamiText = document.getElementById("konamiText");
-            konamiButton.innerText= googleDict[i]['KONAMI']['TEXT'];
+            let fixItButton = document.getElementById("fixItButton");
+            let fixItText = document.getElementById("fixItText");
+            let breakItButton = document.getElementById("breakItButton");
+            let breakItText = document.getElementById("breakItText");
+            //change values of buttons to google dict values for google button set up sheet
+            konamiButton.innerText=googleDict[i]['KONAMI']['TEXT'];
             konamiText.value = googleDict[i]['KONAMI']['VALUE'];
+            console.log(fixItButton);
+            console.log(googleDict[i]['FIXIT']['TEXT']);
+            fixItButton.innerText= googleDict[i]['FIXIT']['TEXT'];
+            fixItText.value = googleDict[i]['FIXIT']['VALUE'];
+ 
+            breakItButton.innerText = googleDict[i]['BREAKIT']['TEXT'];
+            breakItText.value = googleDict[i]['BREAKIT']['VALUE'];
+ 
         
           }
           else {
