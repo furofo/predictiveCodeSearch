@@ -223,12 +223,11 @@
             let fixItButton = document.getElementById("fixItButton");
             let fixItText = document.getElementById("fixItText");
             let breakItButton = document.getElementById("breakItButton");
-            let breakItText = document.getElementById("breakItText");
+            let breakItText = document.getElementById("breakItCode");
             //change values of buttons to google dict values for google button set up sheet
             konamiButton.innerText=googleDict[i]['KONAMI']['TEXT'];
             konamiText.value = googleDict[i]['KONAMI']['VALUE'];
-            console.log(fixItButton);
-            console.log(googleDict[i]['FIXIT']['TEXT']);
+   
             fixItButton.innerText= googleDict[i]['FIXIT']['TEXT'];
             fixItText.value = googleDict[i]['FIXIT']['VALUE'];
  
@@ -324,7 +323,10 @@
          */
          restofCode();
          
-        } // this is where if switch can go to see if has local storage vairable or not
+        } 
+        
+        function linkToGoogleSheet () {
+             // this is where if switch can go to see if has local storage vairable or not
         let locStorage = window.localStorage;
         let defaultUrl = "https://docs.google.com/spreadsheets/d/1dB2bD7SlqiocqnxrPCxbrF0hyK40Yu-_hVwQ-S6yeEc/edit#gid=515008555";
        if(locStorage.getItem("googleSheetLink")) {
@@ -334,10 +336,9 @@
         console.log("no sheet linked");
     
        }
-      //google.script.run.withSuccessHandler(onSuccess).userClicked(googleDict);
-      //google script ends here
-  
-  
+        }
+        
+       
       //navigation logic for menu items goes here
       let url = '';
       function returnUrl(link) {

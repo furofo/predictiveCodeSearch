@@ -24,7 +24,8 @@
        console.log(localStorage.getItem('fullURL'));
        localStorage.removeItem('fullURL');
        setupNavigationBar();
-       if (!locStorage.getItem("googleSheetLink")) {
+       linkToGoogleSheet();
+       if (!localStorage.getItem("googleSheetLink")) {
        
        b = document.createElement("DIV");
        b.setAttribute("class", "divcenter noSheetLinked");
