@@ -217,36 +217,52 @@
         let restofCode = function() {
             
         for (let i = 0; i < googleDict.length; i++) {
+          //see if this is button setup sheet for custom buttons if it isnt add it to the other autocmplete logic if it is update values to buttons
           if(googleDict[i]['HEADING'] == 'BUTTONSETUP') {
-            console.log('found google dictionary with headin go button setup')
-            console.log(googleDict[i]);
-            //variables for buttons
-            let konamiButton = document.getElementById("konamiButton");
-            let konamiText = document.getElementById("konamiText");
-            let fixItButton = document.getElementById("fixItButton");
-            let fixItText = document.getElementById("fixItText");
-            let breakItButton = document.getElementById("breakItButton");
-            let breakItText = document.getElementById("breakItCode");
-            //change values of buttons to google dict values for google button set up sheet
+           
+             console.log(googleDict[i]);
+               console.log(googleDict[i]['KONAMI']);
+              if (googleDict[i].hasOwnProperty('KONAMI')) {
+                console.log("thi sif statementr ran???");
+              
+              //variables for buttons
+               let konamiButton = document.getElementById("konamiButton");
+               let konamiText = document.getElementById("konamiText");
+               // values for buttons
+               konamiButton.innerText=googleDict[i]['KONAMI']['TEXT'];
+               konamiText.value = googleDict[i]['KONAMI']['VALUE'];
+                }
+ 
+               if (googleDict[i].hasOwnProperty('FIXIT')) {
+               //variables for buttons
+               let fixItButton = document.getElementById("fixItButton");
+               let fixItText = document.getElementById("fixItText");
+               // values for buttons
+               fixItButton.innerText= googleDict[i]['FIXIT']['TEXT'];
+               fixItText.value = googleDict[i]['FIXIT']['VALUE'];
+               }
             
-            konamiButton.innerText=googleDict[i]['KONAMI']['TEXT'];
-            konamiText.value = googleDict[i]['KONAMI']['VALUE'];
-   
-            fixItButton.innerText= googleDict[i]['FIXIT']['TEXT'];
-            fixItText.value = googleDict[i]['FIXIT']['VALUE'];
+             if (googleDict[i].hasOwnProperty('BREAKIT')) {
+              //variables for buttons
+               let breakItButton = document.getElementById("breakItButton");
+               let breakItText = document.getElementById("breakItCode");
+               //values for buttons
+               breakItButton.innerText = googleDict[i]['BREAKIT']['VALUE'];
+               breakItText.value = googleDict[i]['BREAKIT']['VALUE'];
+            }
  
-            breakItButton.innerText = googleDict[i]['BREAKIT']['TEXT'];
-            breakItText.value = googleDict[i]['BREAKIT']['VALUE'];
- 
+            
+           
         
           }
           else {
              combinedDict.push(googleDict[i]);
           }
           
-        }
+        
         
       }
+        }
       function onFailure(failureStr) {
         let linkedURL = locStorage.getItem("googleSheetLink");
         let b = document.createElement("DIV");
