@@ -215,8 +215,11 @@
          
          */
         let restofCode = function() {
+            
         for (let i = 0; i < googleDict.length; i++) {
-          if(googleDict[i]['HEADING'] == 'ButtonSetup') {
+          if(googleDict[i]['HEADING'] == 'BUTTONSETUP') {
+            console.log('found google dictionary with headin go button setup')
+            console.log(googleDict[i]);
             //variables for buttons
             let konamiButton = document.getElementById("konamiButton");
             let konamiText = document.getElementById("konamiText");
@@ -225,6 +228,7 @@
             let breakItButton = document.getElementById("breakItButton");
             let breakItText = document.getElementById("breakItCode");
             //change values of buttons to google dict values for google button set up sheet
+            
             konamiButton.innerText=googleDict[i]['KONAMI']['TEXT'];
             konamiText.value = googleDict[i]['KONAMI']['VALUE'];
    
