@@ -37,15 +37,22 @@ function userClicked(url) {
          let obj1 = {
               HEADING: "BUTTONSETUP",
           }
-      Logger.log("this is rows length");
-      Logger.log(rows.length);
+     
       for(let i = 0; i < rows.length && i < 4; i++) {
         if(i == 1) {
              obj1["KONAMI"] =  {
                                 TEXT: rows[1][0].toUpperCase(),
                                 VALUE: rows[1][1],
+                                VISIBLE: false,
                                 }
+
+                      Logger.log(obj1["KONAMI"]);
+                      Logger.log(obj1["KONAMI"]["VALUE"].toUpperCase());
+                      if(obj1["KONAMI"]["VALUE"].toUpperCase() == "DELETE") {
+                      obj1["KONAMI"]["VISIBLE"] = false;
                     }
+             
+              }
         
         if(i == 2) {
               obj1["FIXIT"] =  {

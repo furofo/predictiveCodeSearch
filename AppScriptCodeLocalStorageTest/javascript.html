@@ -61,14 +61,7 @@
   
       }
   
-      document.onkeydown = function(e) {
-          e = e || window.event;
-          switch(e.which || e.keyCode) {
-              case 13:
-              lookupCode();
-              break;
-          }
-      }
+     
   
       function closeAllLists() {
                       var x = document.getElementsByClassName("autocomplete-items");
@@ -79,6 +72,14 @@
               }
   
       function autocomplete(inp) { 
+          document.onkeydown = function(e) {
+          e = e || window.event;
+          switch(e.which || e.keyCode) {
+              case 13:
+              lookupCode();
+              break;
+          }
+      }
           var currentFocus;
           document.addEventListener("click", function (e) {
           closeAllLists();
@@ -192,7 +193,9 @@
           closeAllLists();
           removeLookupCode();
           // variables we use throughout code will go here
+          console.log("is this where erro happesn");
           let inputValue = document.getElementById("input").value.toUpperCase();
+          console.log("is erro")
           let heading;
           let nodey;
           // go through all call dictonaries and see if input is a key in them display key and meaning if so
@@ -223,14 +226,23 @@
              console.log(googleDict[i]);
                console.log(googleDict[i]['KONAMI']);
               if (googleDict[i].hasOwnProperty('KONAMI')) {
-                console.log("thi sif statementr ran???");
+                
               
               //variables for buttons
                let konamiButton = document.getElementById("konamiButton");
                let konamiText = document.getElementById("konamiText");
-               // values for buttons
+               if(!googleDict[i]["KONAMI"]["VISIBLE"]) {
+                 konamiButton.remove();
+                 konamiText.remove();
+ 
+               }
+ 
+               else {
+                  // values for buttons
                konamiButton.innerText=googleDict[i]['KONAMI']['TEXT'];
                konamiText.value = googleDict[i]['KONAMI']['VALUE'];
+               }
+              
                 }
  
                if (googleDict[i].hasOwnProperty('FIXIT')) {
@@ -264,7 +276,7 @@
       }
         }
       function onFailure(failureStr) {
-        let linkedURL = locStorage.getItem("googleSheetLink");
+        let linkedURL = localStorage.getItem("googleSheetLink");
         let b = document.createElement("DIV");
         b.setAttribute("class", "divcenter noSheetLinked");
         b.innerHTML = "<p>Google Sheet did not connect</p>";
