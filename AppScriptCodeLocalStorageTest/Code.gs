@@ -41,14 +41,13 @@ function userClicked(url) {
       for(let i = 0; i < rows.length && i < 4; i++) {
         if(i == 1) {
              obj1["KONAMI"] =  {
-                                TEXT: rows[1][0].toUpperCase(),
+                                TEXT: rows[1][0],
                                 VALUE: rows[1][1],
                                 VISIBLE: true,
                                 }
 
-                      Logger.log(obj1["KONAMI"]);
-                      Logger.log(obj1["KONAMI"]["VALUE"].toUpperCase());
-                      if(obj1["KONAMI"]["VALUE"].toUpperCase() == "DELETE") {
+                      
+                      if(obj1["KONAMI"]["VALUE"].toString().toUpperCase() == "DELETE") {
                       obj1["KONAMI"]["VISIBLE"] = false;
                     }
              
@@ -56,21 +55,21 @@ function userClicked(url) {
         
         if(i == 2) {
               obj1["FIXIT"] =  {
-                                TEXT: rows[2][0].toUpperCase(),
+                                TEXT: rows[2][0],
                                 VALUE: rows[2][1],
                                 VISIBLE: true,
                                 }
-                  if(obj1["FIXIT"]["VALUE"].toUpperCase() == "DELETE") {
+                  if(obj1["FIXIT"]["VALUE"].toString().toUpperCase() == "DELETE") {
                       obj1["FIXIT"]["VISIBLE"] = false;
                     }
                   }
         if(i == 3) {
               obj1["BREAKIT"] =  {
-                                  TEXT: rows[3][0].toUpperCase(),
+                                  TEXT: rows[3][0],
                                   VALUE: rows[3][1],
                                   VISIBLE: true,
                                  }
-            if(obj1["BREAKIT"]["VALUE"].toUpperCase() == "DELETE") {
+            if(obj1["BREAKIT"]["VALUE"].toString().toUpperCase() == "DELETE") {
                       obj1["BREAKIT"]["VISIBLE"] = false;
                     }
             }
