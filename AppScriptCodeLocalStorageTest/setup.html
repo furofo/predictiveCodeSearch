@@ -74,6 +74,7 @@
    
    function storeLink() {
      removeSetupMessages();
+     setupCloseNoSheetLinkedNodes();
      let value;
      //check value if website link and put in local storage if is
      if(document.querySelector("#setupInput").value) {
@@ -113,6 +114,8 @@
        
      }
      else{
+        
+
        localStorage.clear();
        let b = document.createElement("DIV");
        b.setAttribute("class", "divcenter sheetLinked redFont");
@@ -140,6 +143,11 @@
    */
   
    window.onload = function() {
+
+
+       if(localStorage.getItem("googleSheetLink")) {
+         google.script.run.withSuccessHandler(onSuccess).withFailureHandler(setupOnFailure).userClicked(localStorage.getItem("googleSheetLink")); 
+       }
     
        setupNavigationBar();
        let link =  isGoogleSheetLinked();
