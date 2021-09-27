@@ -249,18 +249,40 @@
                //variables for buttons
                let fixItButton = document.getElementById("fixItButton");
                let fixItText = document.getElementById("fixItText");
-               // values for buttons
+ 
+ 
+               if(!googleDict[i]["FIXIT"]["VISIBLE"]) {
+                   fixItButton.remove();
+                   fixItText.remove();
+               }
+ 
+               else {
+                 // values for buttons
                fixItButton.innerText= googleDict[i]['FIXIT']['TEXT'];
                fixItText.value = googleDict[i]['FIXIT']['VALUE'];
+               }
+               
                }
             
              if (googleDict[i].hasOwnProperty('BREAKIT')) {
               //variables for buttons
                let breakItButton = document.getElementById("breakItButton");
                let breakItText = document.getElementById("breakItCode");
-               //values for buttons
+ 
+ 
+ 
+ 
+               if(!googleDict[i]["BREAKIT"]["VISIBLE"]) {
+                 breakItButton.remove();
+                 breakItText.remove();
+               }
+ 
+               else {
+                   //values for buttons
                breakItButton.innerText = googleDict[i]['BREAKIT']['VALUE'];
                breakItText.value = googleDict[i]['BREAKIT']['VALUE'];
+               }
+               
             }
  
             

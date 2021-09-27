@@ -43,7 +43,7 @@ function userClicked(url) {
              obj1["KONAMI"] =  {
                                 TEXT: rows[1][0].toUpperCase(),
                                 VALUE: rows[1][1],
-                                VISIBLE: false,
+                                VISIBLE: true,
                                 }
 
                       Logger.log(obj1["KONAMI"]);
@@ -58,15 +58,21 @@ function userClicked(url) {
               obj1["FIXIT"] =  {
                                 TEXT: rows[2][0].toUpperCase(),
                                 VALUE: rows[2][1],
+                                VISIBLE: true,
                                 }
-
+                  if(obj1["FIXIT"]["VALUE"].toUpperCase() == "DELETE") {
+                      obj1["FIXIT"]["VISIBLE"] = false;
+                    }
                   }
         if(i == 3) {
               obj1["BREAKIT"] =  {
                                   TEXT: rows[3][0].toUpperCase(),
                                   VALUE: rows[3][1],
+                                  VISIBLE: true,
                                  }
-
+            if(obj1["BREAKIT"]["VALUE"].toUpperCase() == "DELETE") {
+                      obj1["BREAKIT"]["VISIBLE"] = false;
+                    }
             }
        
       }
