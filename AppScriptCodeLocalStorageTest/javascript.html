@@ -348,6 +348,7 @@
       This function is call back function for google app scripts when succesfully connects. It returns an object with propertyies HEADING and CODES, since google prohibits returnign functions will loop through after returned to add necessary display code function. Code should work with predefined dictionaries regardless if connects to google app scripts or not
       */
         function onSuccess(cloneObj) { 
+          console.log("on success ran!");
          googleDict = cloneObj; 
          for (let i = 0; i < googleDict.length; i++) {
             if(googleDict[i]['HEADING'] == "ButtonSetup") {

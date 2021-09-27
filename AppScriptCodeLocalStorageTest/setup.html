@@ -8,7 +8,36 @@
 <script>
     
     let localStorage= window.localStorage;
-    
+       function setupCloseNoSheetLinkedNodes() {
+                     var x = document.getElementsByClassName("noSheetLinked");
+                     while(x[0]) {
+                         x[0].parentNode.removeChild(x[0]);
+                     }
+                     return false;  
+             }
+      function setupOnFailure(failureStr) {
+      setupCloseNoSheetLinkedNodes()
+      removeSetupMessages();
+      console.log("this failed");
+       let linkedURL = localStorage.getItem("googleSheetLink");
+       let b = document.createElement("DIV");
+       b.setAttribute("class", "divcenter noSheetLinked");
+       b.innerHTML = "<p>Google Sheet did not connect</p>";
+       
+
+       let c = document.createElement("DIV");
+       c.setAttribute("class", "divcenter noSheetLinked");
+       c.innerHTML = "<p>Current Linked Sheet URL: " +  "<span style = 'color:blue'>" + linkedURL  + "</span>" + "</p>";
+
+       let d = document.createElement("DIV");
+       d.setAttribute("class", "divcenter noSheetLinked");
+       d.innerHTML = "<p>Refresh Page or Check url is in correct format, updated in input field and click linksheet button again. </p>";
+
+      // let wrapper = document.getElementById("setupInputLink");
+       document.body.appendChild(b);
+       document.body.appendChild(c);
+       document.body.appendChild(d);
+     }
     function isGoogleSheetLinked() {
       if(localStorage.getItem("googleSheetLink")) {
       console.log("google sheet linkded")
@@ -47,9 +76,13 @@
      removeSetupMessages();
      let value;
      //check value if website link and put in local storage if is
-     if(document.querySelector("#setupInput").value != '') {
+     if(document.querySelector("#setupInput").value) {
+       console.log("did this execute?");
       value = document.querySelector("#setupInput").value;
+      console.log("can it read value still");
+      console.log(value);
       if(value){
+         console.log("how much further?")
          let  b = document.createElement("DIV");
                     /*make the matching letters bold:*/
                     b.setAttribute("class", "divcenter sheetLinked");
@@ -71,8 +104,13 @@
                     wrapper[0].appendChild(b);
                     wrapper[0].appendChild(c);
                     wrapper[0].appendChild(d);
-       }
+          console.log("before getting to localStorage?");
       localStorage.setItem('googleSheetLink', value);
+      console.log("after local storage::");
+
+           google.script.run.withSuccessHandler(onSuccess).withFailureHandler(setupOnFailure).userClicked(localStorage.getItem("googleSheetLink"));         
+       }
+       
      }
      else{
        localStorage.clear();
@@ -100,8 +138,9 @@
    }
    }
    */
-
+  
    window.onload = function() {
+    
        setupNavigationBar();
        let link =  isGoogleSheetLinked();
        if(link){
@@ -135,6 +174,12 @@
           wrapper = document.getElementsByTagName('main');
           wrapper[0].appendChild(b);
        }
+
+     document.getElementById("setupInput").addEventListener("keydown", function (e) {
+    if (e.code === "Enter") {  //checks whether the pressed key is "Enter"
+        storeLink();
+    }
+    });
    }
   
   </script>
