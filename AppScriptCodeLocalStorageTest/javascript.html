@@ -357,7 +357,7 @@
            else {
            googleDict[i]['DISPLAYCODE'] = function(key) {
             
-                displayHeading("GoogleSheetCodes");
+                displayHeading(googleDict[i]['HEADING']);
                 let htmlToDisplay = document.createElement("DIV");
                 
                  htmlToDisplay.innerHTML = "<h3>" + key + ":</h3><p class = 'listMarginLeft'>" + googleDict[i]["CODES"][key]["DEF"] + "</p>";

@@ -4,53 +4,224 @@
      <base target="_top">
       <?!= include ('javascript'); ?>
       <?!= include('style'); ?>
+       <script>
+        window.onload = function() {
+       setupNavigationBar();
+        }
+        </script>
   </head>
   <body>
-    <div class = "center heading">
+     <div class = "center heading">
         <h3>Copy Buttons</h3>
     </div>
-  <div class = " heading navbar">
+  <div class = "heading navbar">
     <h3 id = "navbarHomeLink">Home</h3>
-    <h3 id = "navbarFirstLink" class = "pageSelected">About</h3>
-    <h3 id = "navbarSecondLink">HowTo</h3>
+    <h3 id = "navbarFirstLink">About</h3>
+    <h3 id = "navbarSecondLink" class = "pageSelected">HowTo</h3>
     <h3 id = "navbarThirdLink">Setup </h3>
     </div>
   <div class = "center heading">
-        <h1>About This Tool</h1>
+        <h1>How To Use Guide / Tutorial</h1>
+    </div>
+    <div class = "center">
+        <p class = "setupGuide">
+            This is a guide on how to use and setup the tool, each section will 
+            be broken down individually and expained starting with the navigation menu.
+             Use the buttons below to go directly to approriate section or scroll down
+        </p>
+       
+    </div>
+    <div class = "center">
+        <div class = "spaceBetween">
+        <button class = "navButton"> Navigation </button>
+        <button class = "navButton"> Home </button>
+        <button class = "navButton"> Setup </button>
+        <button class = "navButton"> Troubleshooting </button>
+        </div>
+        
+    </div>
+    <div class = "center heading">
+        <h1>Navigation Menu</h1>
+    </div>
+    <div class = "center">
+        <div class = "heading navbar exampleNavbar">
+            <h3  class = "exampleLink pageSelected">Home</h3>
+            <h3 class = "exampleLink">About</h3>
+            <h3 class = "exampleLink">HowTo</h3>
+            <h3 class = "exampleLink">Setup </h3>
+            </div>
+            </div>
+    
+    <div class = "center">
+       
+        <p class = "setupGuide">
+            The navigation menu sits at top of page and allows 
+            you to go to different web pages of the tool, by clicking them.  
+            The current web page will be highlighted in black. The navigation 
+            menu should look like image above. Next, each page will be reviewed in further detail.
+        </p>
+    </div>
+   
+    <div class = "center heading">
+        <h1>Home Page </h1>
+    </div>
+    <div class = "center">
+        <p class = "setupGuide">
+            The default/home page has two sections. These are copy buttons that copy predefined coes or codes linked from a google sheet; and a code lookup tool that looks up linked codes from a google sheet and diplays them with their definition and the name of the dictionary they came from displayed above. An example of google sheet in proper formate will be listed below. 
+        </p>
+    </div>
+    <div class = "center">
+        <div class = "setupHeader">
+            Copy Button Selection:
+        </div>
+    </div>
+    <div class = "center btnWrapper">
+        
+        <button class = "exampleButton"> konami </button>
+       
+       <button class = "exampleButton" > fixItCode </button>
+     
+      
+       <button class = "exampleButton"> Break Numbershare </button>
+
     </div>
 
-  <div class = "center">
-      <ul class = "aboutList">
-          <li>This is tool’s purpose is to provide a specialized dictionary to look up codes specific to a 
-              department. Particularly it is a bunch of different dictionaries that are defined in an excel 
-              spreadsheet, in a way that makes sense to the department it is being used for.  It has some 
-              predefined dictionaries built in and an excel sheet predefined that it links to. The 
-              user can also link to their own spreadsheet in the setup page for the dictionary to use if they have 
-              editor access to the spreadsheet and follow the formatting guidelines listed in  
-              the (make this a link) HowTo Section.</li>
-           <li>
-            The first section of the tool is a navigation menu at the top in red.  The Home Button goes 
-            to home page with the tool, About goes to this page, How To is a guide on specifically how to
-             use tool, and setup is where the tool can be linked to a user created spreadsheet.  
-           </li>
+    <div class = "center">
+        <p class = "setupGuide">
+            This section (pictured above) consists of buttons like listed above, 
+            when the button is clicked a predefined code is copied to 
+            the clipboard so the user can paste it else where. 
+        </p>
+    </div>
+    <div class = "center">
+     <p class = "setupGuide">
+           You can change these buttons from a linked google sheet. To do this, first name one of the sheets ButtonSetup (code lookup tool will ignore this as a result). You can also put the value ButtonSetup in the third column and second row of the sheet. Then you can put values Button Text, Copy Value and Sheet Name  from left to right in the first row of the spreadsheet. (This row is optional but doing this will help with readiblity. )
+        </p>
+    </div>
 
-           <li>
-            The second section  Copy Buttons is a series of buttons that can copy codes to  the 
-            keyboard for easy to access codes that a user often has to copy and paste (will add 
-            customaziblity to this later) 
-           </li>
+      <div class = "center">
+     <p class = "setupGuide">
+           Then for each button you want to change, use the Button Text column for the button label (text on the button), and the Copy Value column for the value that copies to your clip board when you click it. This will work for the first three rows which correspond to  the three buttons on the home page.
+        </p>
+    </div>
 
-           <li>
-            The third and Final section i thes code lookup Tool. This is the 
-            meat and bones of the tool. It will allow you to look up codes and search for 
-            them. As you type it will have predictive text that you can click on or use arrow keys 
-            and enter to search for the term. You can continue typing and hit enter to continue your
-             search. If a result is found will display a section underneath tool with heading of the 
-             code name and a description of the code and its definition. If there is a website or Ost
-              linked will highlight n red indicating, you can click on it to open a link to further
-               explain the term in a new tab. 
-           </li>
-      </ul>
-  </div>
+    <div class = "center">
+     <p class = "setupGuide">
+          If you want to delete a button, simply type DELETE in Copy Value Column, this will also work for all three buttons and remove button toolbar complelty if all three have values of DELETE.
+        </p>
+    </div>
+
+      <div class = "center">
+     <p class = "setupGuide">
+         Here is a url to google sheet with working example (look at ButtonSetup worksheet on the bottom for example of configuring buttons)
+        </p>
+    </div>
+
+     <div class = "center">
+     <p class = "setupGuide">
+         URL: <a href = "https://docs.google.com/spreadsheets/d/1dB2bD7SlqiocqnxrPCxbrF0hyK40Yu-_hVwQ-S6yeEc/edit?usp=sharing" target = "_blank">https://docs.google.com/spreadsheets/d/1dB2bD7SlqiocqnxrPCxbrF0hyK40Yu-_hVwQ-S6yeEc/edit?usp=sharing  </a>
+        </p>
+    </div>
+
+
+
+
+    <div class = "center">
+        <div class = "setupHeader">
+            Code Lookup Tool:
+        </div>
+    </div>
+
+    <div class = "center searchbar exampleSearchBar">
+        <input type = "text" id = "input"  placeholder = "put code in here" size = "25" disabled>
+        <button class = "exampleInputButton" disabled>Find Code</button>
+    </div>
+
+    <div class = "center">
+        <p class = "setupGuide">
+            This section (pictured above) is the bulk of the tool. When a user types a code and hits enter it will search for that code from a google sheet that a user has linked on setup page.  This google sheet must have format listed in setup section of this page.  
+        </p>
+        
+       
+    </div>
+      <div class = "center">
+        <p class = "setupGuide">
+           A user can either use search term and hit enter, or click the term that shows up in predective text drop down. They can also  use arrow keys to select predective text that shows up and hit enter to search. If a match is found, the results will display below with a heading showing the type of code it is and a further description below. Additionally, if there is a website or ost linked the text will highlight in red inidcating you can click on it to open the link to more info about the code in a new web-page. 
+        </p>
+      </div> 
+      <div class = "center heading">
+        <h1>Setup Page </h1>
+    </div>
+    <div class = "center searchbar exampleSearchBar exampleGoogleSheetSearchBar">
+        <input type = "text" id = "input"  placeholder = "put google sheet link here" size = "25" disabled>
+        <button class = "exampleInputButton" disabled>Link Sheet</button>
+    </div>
+    <div class = "center">
+        <p class = "setupGuide">
+            In this section you can link your own google sheet to the tool to pull 
+            from as long as it in the right format.  Put in the website url to google sheet you want to link in the input field  
+            and click link sheet button to update it. Sheet should be in the following format:
+        </p>
+    </div>
+    <div class = "center">
+        <div class = "setupHeader googleSheetFormat">
+            Google Sheet Format:
+        </div>
+    </div>
+    <div class = "center">
+        <div class = "setupGuide">
+           <ul>
+               <li>The first row is completly optional and can be used to name the columns</li>
+               <li>The first Column is the dictionary keys or search terms</li>
+               <li>The second Column is the key or term definition</li>
+               <li>The thir column is any website links associated with the term. This is optional and if present will
+                    highlight the definition in red when this term is hovered over, indicating it is clickable</li>
+                <li>Each worksheet in the linked google sheet is a separate dictionary,
+                     the name of each dictionary is either the sheet name, or a optional 
+                     vaue put in the 4th column / 1st row, this is the value that displays 
+                     in parenthesis when searching for the search term</li>
+              <li>You can also name a worksheet Button Setup as described earlier in the copy button section. This customizes button format on Home Page. The format for this sheet is different and is described above in Copy Button Section. </li>
+                <li> Here is example of google sheet format. (Button Setup sheet is for customizing buttons on home Page)</li>
+               
+                  <li> URL: <a href = "https://docs.google.com/spreadsheets/d/1dB2bD7SlqiocqnxrPCxbrF0hyK40Yu-_hVwQ-S6yeEc/edit?usp=sharing" target = "_blank">  https://docs.google.com/spreadsheets/d/1dB2bD7SlqiocqnxrPCxbrF0hyK40Yu-_hVwQ-S6yeEc/edit?usp=sharing</a></li>
+           </ul>
+
+        </div>
+    </div>
+    <div class = "center heading">
+        <h1>Troubleshooting</h1>
+    </div>
+
+    <h5 class = "troubleshootingHeading"> Home Page </h5>
+    <div class = "center">
+        <p class = "setupGuide">
+         The Home  and Setup pages have some error handling functionality, here are solutions to common errors:
+        </p>
+    </div>
+    <div class = "center">
+        <li class = "setupGuide">
+            <span class = "redFont">No google sheet linked!</span> This error means there is no google sheet linked to the tool. To resolve, click on setup link of message or got to set up page in navbar. Then put in a shareable google link. You can get a shareable link by clicking share in top right corner of webpage with google sheet then click copy link button. For this to work you need to have editor access to sheet.
+        </li>
+    </div>
+     <div class = "center">
+        <li class = "setupGuide">
+           <span class = "redFont">Google sheet did not connect.</span> This means that the google sheet did not connect succesfully. The next section shows the google sheet that is currently linked. Make sure the url is a shareable url that you have editor access to and that the sheet follows formatting guidelines in setup section of this page.  To resolve, correct url in setup page or put google sheet in proper format.
+        </li>
+    </div>
+    
+    <h5 class = "troubleshootingHeading"> Setup Page </h5>
+     <div class = "center">
+        <li class = "setupGuide">
+         <span class = "redFont">No google sheet linked!</span>This error means nothing was put in input field when link sheet was submitted. Put a shareable google sheet link in the input field and click link sheet button to resolve.
+        </li>
+    </div>
+
+    <div class = "center">
+        <li class = "setupGuide">
+         <span class = "redFont"> Google sheet did not connect.</span> This means that google sheet did not connect succesfully. The next section shows the google sheet that is currently linked. Make sure the url is a shareable url that you have editor access to and that sheet follows formatting guidelines in setup section of this page.  To resolve, correct url in set up page or put the google sheet in proper format.
+        </li>
+    </div>
+
+    
   </body>
 </html>
